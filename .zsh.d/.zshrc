@@ -1,3 +1,4 @@
+[ -f ~/.zsh.d/environment.zsh ] && source ~/.zsh.d/environment.zsh
 [ -f ~/.zsh.d/alias.zsh ] && source ~/.zsh.d/alias.zsh
 [ -f ~/.zsh.d/plugins.zsh ] && source ~/.zsh.d/plugins.zsh
 [ -f ~/.zsh.d/completion.zsh ] && source ~/.zsh.d/completion.zsh
