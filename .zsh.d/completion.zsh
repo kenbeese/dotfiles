@@ -73,3 +73,4 @@ bindkey -M menuselect "^N" down-line-or-history
 
 fpath=(~/.zsh.d/my-completions(N-/) $fpath)
 
+compinit

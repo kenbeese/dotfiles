@@ -58,7 +58,7 @@
 (locate-user-emacs-file "init-loader")
 
 
-(init-loader-load (locate-user-emacs-file "init-loader"))
+;; (init-loader-load (locate-user-emacs-file "init-loader"))
 ;; (set-language-environment "UTF-8") ;; UTF-8でも問題ないので適宜コメントアウトしてください
 
 (when (eq 'cygwin system-type)
