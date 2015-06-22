@@ -16,9 +16,9 @@
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
-(let ( (default-directory
-         (file-name-as-directory (concat user-emacs-directory "site-lisp")))
-       )
+(let ((default-directory
+	(file-name-as-directory (concat user-emacs-directory "site-lisp")))
+      )
   (add-to-list 'load-path default-directory)
   (normal-top-level-add-subdirs-to-load-path)
   )
@@ -28,28 +28,37 @@
 (package-initialize)
 
 
-;; (setq knbs-favorite-packages
-;;       '(
-;; 	auto-complete
-;; 	solarized-theme
-;; 	helm
-;;      helm-dired-recent-dirs 
-;; 	markdown-mode
-;; 	eldoc-extension
-;; 	paredit
-;;      term+
-;;      term+key-intercept
-;;      term+mux
-;;      auto-highlight-symbol
-;; 	))
-
-
-;; (dolist (package knbs-favorite-packages)
-;;   (unless (package-installed-p package)
-;;     (package-install package)))
+(setq knbs-favorite-packages
+      '(
+	init-loader
+	auto-complete
+	solarized-theme
+	helm
+	helm-dired-recent-dirs 
+	markdown-mode
+	eldoc-extension
+	paredit
+	term+
+	term+key-intercept
+	term+mux
+	auto-highlight-symbol
+	migemo
+	))
 
 
 
+(let ((package-refreshed nil))
+  (dolist (package knbs-favorite-packages)
+    (unless (package-installed-p package)
+      (unless package-refreshed
+	(package-refresh-contents)
+	(setq package-refreshed t))
+      (package-install package))))
+
+(locate-user-emacs-file "init-loader")
+
+
+(init-loader-load (locate-user-emacs-file "init-loader"))
 ;; (set-language-environment "UTF-8") ;; UTF-8でも問題ないので適宜コメントアウトしてください
 
 (when (eq 'cygwin system-type)
