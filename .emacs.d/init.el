@@ -1,17 +1,3 @@
-;; misc 
-(setq inhibit-startup-screen t)
-
-(setq transient-mark-mode t)
-
-(show-paren-mode 1)
-
-(keyboard-translate ?\C-h ?\C-?)
-
-(toggle-scroll-bar 0)
-(line-number-mode 1)
-(column-number-mode 1)
-(blink-cursor-mode 0)
-
 ;; package
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
@@ -30,20 +16,20 @@
 
 (setq knbs-favorite-packages
       '(
-	init-loader
-	auto-complete
-	solarized-theme
-	helm
-	helm-dired-recent-dirs 
-	markdown-mode
-	eldoc-extension
-	paredit
-	term+
-	term+key-intercept
-	term+mux
-	auto-highlight-symbol
-	migemo
-	))
+        init-loader
+        auto-complete
+        solarized-theme
+        helm
+        helm-dired-recent-dirs
+        markdown-mode
+        eldoc-extension
+        paredit
+        term+
+        term+key-intercept
+        term+mux
+        auto-highlight-symbol
+        migemo
+        ))
 
 
 
@@ -55,10 +41,69 @@
 	(setq package-refreshed t))
       (package-install package))))
 
-(locate-user-emacs-file "init-loader")
 
 
 ;; (init-loader-load (locate-user-emacs-file "init-loader"))
+
+;; misc
+
+(setq-default tab-width 4 indent-tabs-mode nil)
+
+(setq inhibit-startup-screen t)
+
+(setq transient-mark-mode t)
+
+(show-paren-mode 1)
+
+(keyboard-translate ?\C-h ?\C-?)
+
+(toggle-scroll-bar 0)
+(line-number-mode 1)
+(column-number-mode 1)
+(blink-cursor-mode 0)
+(global-auto-revert-mode t)
+(setq echo-keystrokes 0.1)
+(when (>= emacs-major-version 23)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (menu-bar-mode -1))
+(define-key global-map "\C-x\C-b" 'ibuffer)
+(setq ibuffer-default-sorting-mode 'filename/process)
+(eval-after-load "ibuffer"
+  '(define-key ibuffer-mode-map "R" 'Buffer-menu-grep-delete))
+(setq require-final-newline t)
+
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)))
+
+(add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                          for save-hist mode                        ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq savehist-save-minibuffer-history nil)
+(setq savehist-additional-variables '(extended-command-history))
+(setq savehist-file (locate-user-emacs-file "history"))
+(savehist-mode 1)
+
+
+(add-to-list 'backup-directory-alist
+             (cons ".*" (locate-user-emacs-file "backup/")))
+
+
+
+(add-to-list 'auto-save-file-name-transforms
+             `("\\`/\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat (locate-user-emacs-file "backup/") "\\2") t))
+(defvar my-disable-delete-trailing-modes '(org-mode markdown-mode))
+
+(defun my-delete-trailing-whitespace ()
+  (when (not (memq major-mode my-disable-delete-trailing-modes))
+    (delete-trailing-whitespace)))
+
+(add-hook 'before-save-hook 'my-delete-trailing-whitespace)
+
+
 ;; (set-language-environment "UTF-8") ;; UTF-8でも問題ないので適宜コメントアウトしてください
 
 (when (eq 'cygwin system-type)
@@ -128,7 +173,7 @@
   ;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
   (set-face-font 'tooltip "Migu 1M-9:antialias=standard")
 
-  
+
 
   )
 
