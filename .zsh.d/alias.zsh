@@ -27,14 +27,6 @@ set_alias(){
     alias -g W='| wc'
 }
 
-set_gnu_alias(){
-    alias emacsserver="XMODIFIERS=@im=none emacs"
-    alias xlock="xlock -mode blank"
-    alias pxdvi='LANG=C pxdvi'
-    alias gv='LANG=C gv'
-    alias ls="ls --color"
-}
-
 set_darwin_alias(){
     alias javac="javac -J-Dfile.encoding=UTF8"
     alias java="java -Dfile.encoding=UTF8"
@@ -46,23 +38,32 @@ set_darwin_alias(){
     alias acroread='open -a Adobe\ reader -n'
     alias vlc='open -a vlc'
 }
-set_solaris_alias(){}
-set_linux_alias(){}
+
+set_linux_alias(){
+    alias emacsserver="XMODIFIERS=@im=none emacs"
+    alias xlock="xlock -mode blank"
+    alias pxdvi='LANG=C pxdvi'
+    alias gv='LANG=C gv'
+    alias ls="ls --color"
+}
+
+set_cygwin_alias(){
+    alias emacs="emacsclient -n"
+    alias emacsclient="emacsclient --socket-name=~/.emacs.d/server"
+}
 
 
 set_os_alias() {
     case $OSTYPE in
       *darwin*)
-        set_darwin_alias
-        ;;
-      *solaris*)
-        set_gnu_alias
-        set_solaris_alias
-        ;;
-      *)
-        set_gnu_alias
-        set_linux_alias
-        ;;
+          set_darwin_alias
+          ;;
+      *linux*)
+          set_linux_alias
+          ;;
+      *cygwin*)
+          set_cygwin_alias
+          ;;
     esac
 }
 
