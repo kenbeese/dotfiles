@@ -62,6 +62,7 @@ set_os_alias() {
           set_linux_alias
           ;;
       *cygwin*)
+          set_linux_alias
           set_cygwin_alias
           ;;
     esac
