@@ -39,7 +39,12 @@ fpath=(~/.zsh.d/zsh-completions/src(N-/) $fpath)
 ######################
 # For zsh-vcs-prompt #
 ######################
-#source ~/.zsh.d/zsh-vcs-prompt/zshrc.sh
+if [ -f ~/.zsh.d/zsh-vcs-prompt/zshrc.sh ]; then
+    [ $OSTYPE != cygwin ] && source ~/.zsh.d/zsh-vcs-prompt/zshrc.sh
+else
+    echo "Please install zsh-vcs-prompt!"
+fi
+
 ZSH_VCS_PROMPT_ENABLE_CACHING='true'
 
 ZSH_VCS_PROMPT_AHEAD_SIGIL='↑'

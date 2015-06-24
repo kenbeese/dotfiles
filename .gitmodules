@@ -7,3 +7,6 @@
 [submodule ".zsh.d/dircolors-solarized"]
 	path = .zsh.d/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized
+[submodule ".zsh.d/zsh-vcs-prompt"]
+	path = .zsh.d/zsh-vcs-prompt
+	url = https://github.com/yonchu/zsh-vcs-prompt
