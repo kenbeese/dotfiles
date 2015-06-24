@@ -43,40 +43,9 @@
 
 
 
-;; (init-loader-load (locate-user-emacs-file "init-loader"))
+(init-loader-load (locate-user-emacs-file "init-loader"))
 
 ;; misc
-
-(setq-default tab-width 4 indent-tabs-mode nil)
-
-(setq inhibit-startup-screen t)
-
-(setq transient-mark-mode t)
-
-(show-paren-mode 1)
-
-(keyboard-translate ?\C-h ?\C-?)
-
-(toggle-scroll-bar 0)
-(line-number-mode 1)
-(column-number-mode 1)
-(blink-cursor-mode 0)
-(global-auto-revert-mode t)
-(setq echo-keystrokes 0.1)
-(when (>= emacs-major-version 23)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (menu-bar-mode -1))
-(define-key global-map "\C-x\C-b" 'ibuffer)
-(setq ibuffer-default-sorting-mode 'filename/process)
-(eval-after-load "ibuffer"
-  '(define-key ibuffer-mode-map "R" 'Buffer-menu-grep-delete))
-(setq require-final-newline t)
-
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)))
-
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
