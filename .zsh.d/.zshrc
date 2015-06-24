@@ -8,5 +8,6 @@
 [ -f ~/.zsh.d/history.zsh ] && source ~/.zsh.d/history.zsh
 [ -f ~/.zsh.d/prompt.zsh ] && source ~/.zsh.d/prompt.zsh
 [ -f ~/.zsh.d/etc.zsh ] && source ~/.zsh.d/etc.zsh
+[ -f ~/.zsh.d/local.zsh ] && source ~/.zsh.d/local.zsh
 
 #zprof
