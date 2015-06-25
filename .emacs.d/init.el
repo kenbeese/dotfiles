@@ -29,6 +29,7 @@
         term+mux
         auto-highlight-symbol
         migemo
+        jedi
         ))
 
 (let ((package-refreshed nil))

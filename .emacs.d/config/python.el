@@ -1,0 +1,7 @@
+(defun knbs-jedi:start ()
+  (interactive)
+  (setq jedi:setup-keys t)
+  (setq jedi:complete-on-dot t)
+  (jedi:setup)
+  (jedi:ac-setup))
+(add-hook 'python-mode-hook 'knbs-jedi:start)
