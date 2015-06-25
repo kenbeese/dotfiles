@@ -73,4 +73,8 @@ bindkey -M menuselect "^N" down-line-or-history
 
 fpath=(~/.zsh.d/my-completions(N-/) $fpath)
 
+if [ $OSTYPE = cygwin ]; then
+    zstyle ':completion:*' fake-files '/:c' '/:d' '/:e'
+fi
+
 compinit

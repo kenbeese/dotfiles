@@ -9,8 +9,9 @@ link () {
     ln -sf "$from" "$to"
 }
 
+(cd $CURRENTDIR && git submodule update --init)
+
 HOGE=(".tmux.conf" ".zshenv" ".zsh.d" ".emacs.d")
 for ofile in ${HOGE[@]}; do
     link ${CURRENTDIR}/${ofile} ${HOME}/
 done
-

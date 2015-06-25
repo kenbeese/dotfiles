@@ -43,6 +43,8 @@ set_cygwin_env() {
     export EDITOR="emacsclient --socket-name=~/.emacs.d/server -nw"
     export GIT_EDITOR="emacsclient --socket-name=~/.emacs.d/server -nw"
     export VISUAL="emacsclient --socket-name=~/.emacs.d/server -nw"
+    export TMUX_TMPDIR="/var/run/tmux"
+    [ -f ~/.minttyrc.solarized.dark ] && source ~/.minttyrc.solarized.dark
 }
 
 set_os_env() {
