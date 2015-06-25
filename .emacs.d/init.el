@@ -31,8 +31,6 @@
         migemo
         ))
 
-
-
 (let ((package-refreshed nil))
   (dolist (package knbs-favorite-packages)
     (unless (package-installed-p package)
@@ -46,31 +44,6 @@
 (init-loader-load (locate-user-emacs-file "init-loader"))
 
 ;; misc
-(add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;                          for save-hist mode                        ;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq savehist-save-minibuffer-history nil)
-(setq savehist-additional-variables '(extended-command-history))
-(setq savehist-file (locate-user-emacs-file "history"))
-(savehist-mode 1)
-
-
-(add-to-list 'backup-directory-alist
-             (cons ".*" (locate-user-emacs-file "backup/")))
-
-
-
-(add-to-list 'auto-save-file-name-transforms
-             `("\\`/\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat (locate-user-emacs-file "backup/") "\\2") t))
-(defvar my-disable-delete-trailing-modes '(org-mode markdown-mode))
-
-(defun my-delete-trailing-whitespace ()
-  (when (not (memq major-mode my-disable-delete-trailing-modes))
-    (delete-trailing-whitespace)))
-
-(add-hook 'before-save-hook 'my-delete-trailing-whitespace)
 
 
 ;; (set-language-environment "UTF-8") ;; UTF-8でも問題ないので適宜コメントアウトしてください
@@ -146,168 +119,8 @@
 
   )
 
-;; フォントサイズ調整
-(global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
-(global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
-(global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
-(global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
-
-;; フォントサイズ リセット
-(global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
-
-
-
-;; color-theme
-(load-theme 'solarized-light t)
-(disable-theme 'solarized-light)
-(load-theme 'solarized-dark t)
-(disable-theme 'solarized-dark)
-
-;(enable-theme 'solarized-light)
-(enable-theme 'solarized-dark)
-
-
-;; (defun knbs-change-solarized-theme ()
-;;   (interactive)
-;;   (dolist (theme custom-enabled-themes)
-;;     (disable-theme theme))
-;;   (enable-theme knbs--next-solarized-theme))
 
 (ac-config-default)
-(eldoc-mode 1)
-
-
-;; helm
-(helm-mode 1)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-d") 'helm-dired-recent-dirs-view)
-
-
-(defun helm-mini ()
-    "Preconfigured `helm' lightweight version \(buffer -> recentf\)."
-    (interactive)
-    (require 'helm-buffers)
-    (require 'helm-files)
-    (unless helm-source-buffers-list
-      (setq helm-source-buffers-list
-            (helm-make-source "Buffers" 'helm-source-buffers)))
-    (let* ((high-other-source '(helm-source-recentf
-                                helm-source-bookmarks
-                                helm-source-file-cache))
-           (low-other-source `(,(and (not (string-match "^/sshx:.*" default-directory))
-                                     'helm-source-files-in-current-dir)
-                               ;helm-source-filelist
-                               ;helm-source-locate
-                               helm-source-buffer-not-found))
-           (sources `(helm-source-buffers-list
-                      ,@high-other-source
-                      ,@low-other-source
-                      )))
-      (helm-other-buffer sources "*helm mini*")))
-
-;; action shortcut key
-(eval-after-load "helm"
-  '(progn
-     (define-key helm-map (kbd "C-e") '(lambda () (interactive) (helm-select-nth-action 1)))
-     (define-key helm-map (kbd "C-j") '(lambda () (interactive) (helm-select-nth-action 2)))
-     (define-key helm-map (kbd "M-j") 'helm-execute-persistent-action)
-     ))
-
-;; find-file時のキーマップ
-(eval-after-load "helm-files"
-  '(progn
-     (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
-     (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-     (define-key helm-read-file-map (kbd "C-z") 'helm-select-action)
-     (define-key helm-find-files-map (kbd "C-z") 'helm-select-action)))
-
-
-;; helmを無効にしたい関数
-(eval-after-load "helm-mode"
-  '(progn
-     (add-to-list 'helm-completing-read-handlers-alist '(dired-create-directory . nil))
-     (add-to-list 'helm-completing-read-handlers-alist '(kill-buffer . nil))
-     (add-to-list 'helm-completing-read-handlers-alist '(write-file . nil))
-     (add-to-list 'helm-completing-read-handlers-alist '(dired . nil))
-     (add-to-list 'helm-completing-read-handlers-alist '(find-file . nil))
-     ))
-;; basenameを省略しない
-(setq helm-ff-transformer-show-only-basename nil)
-
-
-
-;; org-mode
-(when (eq system-type 'cygwin)
-  (setq org-directory "/c/Users/takagi/Documents/Memo/")
-  (setq org-default-notes-file (expand-file-name "master.org" org-directory))
-  (setq org-agenda-files (list org-default-notes-file))
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c l") 'org-store-link)
-  )
-
-
-(setq org-todo-keywords '((sequence "TODO" "STARTED" "|" "DONE")))
-(setq org-clock-in-switch-to-state "STARTED")
-(setq org-agenda-custom-commands
-        '(
-          ("p" "Projects -todo" tags-todo "PROJECT")
-
-          ("Y" "MAYBE" todo "MAYBE")
-
-          ("N" "Next Actions Lists"
-           ((agenda "" ((org-agenda-sorting-strategy
-                         (quote ((agenda habit-down
-                                         time-up
-                                         todo-state-down
-                                         priority-down
-                                         category-keep))))
-                        (org-agenda-dim-blocked-tasks t)))
-            (tags-todo "ToDo" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))
-            (tags-todo "PROJECT" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled)))))
-           ((org-agenda-compact-blocks t)))
-
-          ("D" "Daily Action List" agenda ""
-           ((org-agenda-ndays 1)
-            ;(org-agenda-dim-blocked-tasks 'invisible)
-            (org-agenda-dim-blocked-tasks t)
-            (org-deadline-warning-days 7)
-            (org-agenda-sorting-strategy
-             (quote ((agenda habit-down
-                             time-up
-                             todo-state-down
-                             priority-down
-                             category-keep))))
-                         ;; (quote ((agenda time-up todo-state-down tag-up priority-down) )))
-                        ))
-
-          ("d" "Upcoming deadlines" agenda ""
-           ((org-agenda-time-grid nil)
-            (org-deadline-warning-days 365)
-            (org-agenda-entry-types '(:deadline))))
-
-          ("F" "Future list" agenda ""
-           ((org-agenda-ndays 31)
-            (org-agenda-sorting-strategy
-             (quote ((agenda todo-state-up time-up tag-up priority-down) )))
-            ))
-          ))
-
-;; lisp
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
-(global-set-key (kbd "M-s") 'paredit-splice-sexp)
-
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-(setq eldoc-idle-delay 0.01)
-(setq eldoc-minor-mode-string "")
-
 
 ;; 同一バッファ名にディレクトリ付与
 (require 'uniquify)

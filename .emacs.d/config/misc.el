@@ -48,3 +48,41 @@
 (add-hook 'dired-mode-hook
           (lambda ()
             (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)))
+
+(add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                          for save-hist mode                        ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq savehist-save-minibuffer-history nil)
+(setq savehist-additional-variables '(extended-command-history))
+(setq savehist-file (locate-user-emacs-file "history"))
+(savehist-mode 1)
+
+
+;;; auto-savefileの場所変更
+(add-to-list 'backup-directory-alist
+             (cons ".*" (locate-user-emacs-file "backup/")))
+
+(add-to-list 'auto-save-file-name-transforms
+             `("\\`/\\([^/]*/\\)*\\([^/]*\\)\\'" ,(concat (locate-user-emacs-file "backup/") "\\2") t))
+
+
+;;; white spaceの削除
+(defvar my-disable-delete-trailing-modes '(org-mode markdown-mode))
+
+(defun my-delete-trailing-whitespace ()
+  (when (not (memq major-mode my-disable-delete-trailing-modes))
+    (delete-trailing-whitespace)))
+
+(add-hook 'before-save-hook 'my-delete-trailing-whitespace)
+
+
+;; フォントサイズ調整
+(global-set-key (kbd "C-<wheel-up>")   '(lambda() (interactive) (text-scale-increase 1)))
+(global-set-key (kbd "C-=")            '(lambda() (interactive) (text-scale-increase 1)))
+(global-set-key (kbd "C-<wheel-down>") '(lambda() (interactive) (text-scale-decrease 1)))
+(global-set-key (kbd "C--")            '(lambda() (interactive) (text-scale-decrease 1)))
+
+;; フォントサイズ リセット
+(global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
