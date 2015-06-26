@@ -30,6 +30,7 @@
         auto-highlight-symbol
         migemo
         jedi
+        js2-mode
         ))
 
 (let ((package-refreshed nil))
