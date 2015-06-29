@@ -189,3 +189,32 @@
 
 ;; auto-highlight-symbol
 (global-auto-highlight-symbol-mode t)
+
+;; ispell
+(unless (executable-find "aspell")
+  (warn "Aspell is not found please install."))
+
+(setq-default ispell-program-name "aspell")
+
+(eval-after-load "ispell"
+  '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
+(setq flyspell-enable-mode-hooks '(fundamental-mode-hook
+                                   default-generic-mode-hook
+                                   markdown-mode-hook
+                                   text-mode-hook
+                                   org-mode-hook))
+
+(setq flyspell-prog-enable-mode-hooks '(python-mode-hook
+                                        c-mode-hook
+                                        c++-mode-hook
+                                        emacs-lisp-mode-hook))
+
+(dolist (mode flyspell-enable-mode-hooks)
+  (add-hook mode
+            '(lambda ()
+               (flyspell-mode 1))))
+(dolist (mode flyspell-prog-enable-mode-hooks)
+  (add-hook mode
+            '(lambda ()
+               (flyspell-prog-mode))))
