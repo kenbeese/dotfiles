@@ -11,8 +11,12 @@ set_env() {
         $HOME/bin(N-/)
         $HOME/script(N-/)
         $HOME/nora/bin(N-/)
+        $HOME/.local/bin(N-/)
         ${HOME}/workspaces/gocode/bin
         $path)
+    ld_library_path=(${HOME}/nora/lib(N-/)
+                     $ld_library_path)
+    PKG_CONFIG_PATH=${HOME}/nora/lib/pkgconfig
     export GOPATH="${HOME}/workspaces/gocode"
     #for highlight syntax in less
     if type src-hilite-lesspipe.sh > /dev/null 2>&1 ; then
