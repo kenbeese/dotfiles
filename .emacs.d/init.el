@@ -1,4 +1,5 @@
 ;; package
+
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
@@ -32,6 +33,8 @@
         jedi
         py-autopep8
         js2-mode
+        flycheck-tip
+        flex-autopair
         ))
 
 (let ((package-refreshed nil))
@@ -41,7 +44,6 @@
 	(package-refresh-contents)
 	(setq package-refreshed t))
       (package-install package))))
-
 
 
 (init-loader-load (locate-user-emacs-file "init-loader"))
@@ -123,41 +125,11 @@
   )
 
 
-(ac-config-default)
-
 ;; 同一バッファ名にディレクトリ付与
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (setq uniquify-ignore-buffers-re "*[^*]+*")
-
-
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-;;; @ search - migemo                                               ;;;
-;;;   https://github.com/emacs-jp/migemo                            ;;;
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
-(if (not (executable-find "cmigemo"))
-    (warn "cmigemo is not found please install.")
-  (require 'migemo)
-
-  (defvar migemo-command nil)
-  (setq migemo-command "cmigemo")
-
-  (defvar migemo-options nil)
-  (setq migemo-options '("-q" "--emacs"))
-
-  (defvar migemo-dictionary nil)
-  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-
-  (defvar migemo-user-dictionary nil)
-
-  (defvar migemo-regex-dictionary nil)
-
-  (defvar migemo-coding-system nil)
-  (setq migemo-coding-system 'utf-8-unix)
-
-  (load-library "migemo"))
-
 
 
 
@@ -179,11 +151,6 @@
 (setq js2-indent-on-enter-key t)
 
 
-;; recentf
-(setq recentf-max-saved-items 1000)
-(run-with-idle-timer 600 t 'recentf-save-list)
-
-
 ;; csv-mode
 (setq csv-separators '("	" ","))
 (setq csv-separators '("," "	"))
@@ -191,6 +158,3 @@
 
 ;; term+
 (setq term+shell-history-dont-exec t)
-
-;; auto-highlight-symbol
-(global-auto-highlight-symbol-mode t)

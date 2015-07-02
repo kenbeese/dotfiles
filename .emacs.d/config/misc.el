@@ -28,6 +28,10 @@
 ;;; key-strokeの表示
 (setq echo-keystrokes 0.1)
 
+;;; beep音をやめる
+(setq visible-bell t)
+
+
 ;;; ツール、スクロール、メニューバーの非表示
 (when (>= emacs-major-version 23)
   (tool-bar-mode -1)
