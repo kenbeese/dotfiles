@@ -8,7 +8,7 @@ set_alias(){
     alias la='ls -a'
     alias pkill='pkill -x'
     alias lv='lv -c'
-    alias less='less -r'
+    alias less='vim -R'
     alias le='less -r'
     alias ne="emacsclient -nw"
     alias e="emacsclient -n"
