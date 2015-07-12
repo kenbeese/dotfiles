@@ -4,7 +4,7 @@
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
 (let ((default-directory
-	(file-name-as-directory (concat user-emacs-directory "site-lisp")))
+        (file-name-as-directory (concat user-emacs-directory "site-lisp")))
       )
   (add-to-list 'load-path default-directory)
   (normal-top-level-add-subdirs-to-load-path)
@@ -41,8 +41,8 @@
   (dolist (package knbs-favorite-packages)
     (unless (package-installed-p package)
       (unless package-refreshed
-	(package-refresh-contents)
-	(setq package-refreshed t))
+        (package-refresh-contents)
+        (setq package-refreshed t))
       (package-install package))))
 
 
@@ -69,34 +69,34 @@
   (unless (facep 'cursor-ime-off)
     (make-face 'cursor-ime-off)
     (set-face-attribute 'cursor-ime-off nil
-			:background "#839496" :foreground "White")
+                        :background "#839496" :foreground "White")
     )
   (unless (facep 'cursor-ime-on)
     (make-face 'cursor-ime-on)
     (set-face-attribute 'cursor-ime-on nil
-			:background "#dc322f" :foreground "White")
+                        :background "#dc322f" :foreground "White")
     )
 
   (add-hook
    'w32-ime-off-hook
    '(lambda()
       (if (facep 'cursor-ime-off)
-	  (let ( (fg (face-attribute 'cursor-ime-off :foreground))
-		 (bg (face-attribute 'cursor-ime-off :background)) )
-	    (set-face-attribute 'cursor nil :foreground fg :background bg)
-	    )
-	)
+          (let ( (fg (face-attribute 'cursor-ime-off :foreground))
+                 (bg (face-attribute 'cursor-ime-off :background)) )
+            (set-face-attribute 'cursor nil :foreground fg :background bg)
+            )
+        )
       )
    )
   (add-hook
    'w32-ime-on-hook
    '(lambda()
       (if (facep 'cursor-ime-on)
-	  (let ( (fg (face-attribute 'cursor-ime-on :foreground))
-		 (bg (face-attribute 'cursor-ime-on :background)) )
-	    (set-face-attribute 'cursor nil :foreground fg :background bg)
-	    )
-	)
+          (let ( (fg (face-attribute 'cursor-ime-on :foreground))
+                 (bg (face-attribute 'cursor-ime-on :background)) )
+            (set-face-attribute 'cursor nil :foreground fg :background bg)
+            )
+        )
       )
    )
 
@@ -140,7 +140,7 @@
   (setq server-socket-dir "~/.emacs.d"))
 (unless (server-running-p)
   (server-start)
-)
+  )
 (global-set-key (kbd "C-x C-c") 'server-edit)
 (defalias 'exit 'save-buffers-kill-emacs)
 
