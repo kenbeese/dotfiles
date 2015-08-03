@@ -90,3 +90,8 @@
 
 ;; フォントサイズ リセット
 (global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
+
+
+;; split-windowの挙動
+(setq split-height-threshold nil)
+(setq split-width-threshold 160)
