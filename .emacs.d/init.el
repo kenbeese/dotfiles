@@ -37,6 +37,7 @@
         flex-autopair
         emmet-mode
         ac-emmet
+        web-mode
         ))
 
 (let ((package-refreshed nil))
@@ -169,9 +170,3 @@
 
 ;; term+
 (setq term+shell-history-dont-exec t)
-
-
-(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-(add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'sgml-mode-hook 'ac-emmet-html-setup)
-(add-hook 'css-mode-hook 'ac-emmet-css-setup)
