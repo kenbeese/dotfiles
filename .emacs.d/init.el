@@ -35,6 +35,8 @@
         js2-mode
         flycheck-tip
         flex-autopair
+        emmet-mode
+        ac-emmet
         ))
 
 (let ((package-refreshed nil))
@@ -44,6 +46,7 @@
         (package-refresh-contents)
         (setq package-refreshed t))
       (package-install package))))
+
 
 
 (init-loader-load (locate-user-emacs-file "init-loader"))
@@ -149,7 +152,15 @@
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
 (setq js2-enter-indents-newline t)
 (setq js2-indent-on-enter-key t)
+;; (eval-after-load 'js2-mode
+;;   '(add-hook 'js2-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
 
+;; (eval-after-load 'json-mode
+;;   '(add-hook 'json-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
 
 ;; csv-mode
 (setq csv-separators '("	" ","))
@@ -158,3 +169,9 @@
 
 ;; term+
 (setq term+shell-history-dont-exec t)
+
+
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode)
+(add-hook 'sgml-mode-hook 'ac-emmet-html-setup)
+(add-hook 'css-mode-hook 'ac-emmet-css-setup)

@@ -6,11 +6,12 @@
 
 ;; auto-highlight-symbol
 (global-auto-highlight-symbol-mode t)
+(add-to-list 'ahs-modes 'js2-mode)
 
 ;;; auto-complete
 (ac-config-default)
 (ac-flyspell-workaround)
-
+(add-to-list 'ac-modes 'html-mode)
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ search - migemo                                               ;;;
 ;;;   https://github.com/emacs-jp/migemo                            ;;;

@@ -29,7 +29,8 @@
 (setq echo-keystrokes 0.1)
 
 ;;; beep音をやめる
-(setq visible-bell t)
+(setq ring-bell-function 'ignore)
+;(setq visible-bell nil)
 
 
 ;;; ツール、スクロール、メニューバーの非表示
