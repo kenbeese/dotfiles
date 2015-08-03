@@ -1,5 +1,6 @@
 ;; indentの設定
 (setq-default tab-width 4 indent-tabs-mode nil)
+(setq standard-indent 2)
 
 ;; statup画面の非表示
 (setq inhibit-startup-screen t)
