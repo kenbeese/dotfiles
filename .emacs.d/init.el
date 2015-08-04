@@ -38,6 +38,7 @@
         emmet-mode
         ac-emmet
         web-mode
+        origami
         ))
 
 (let ((package-refreshed nil))
@@ -170,3 +171,9 @@
 
 ;; term+
 (setq term+shell-history-dont-exec t)
+
+
+(global-origami-mode 1)
+
+(global-set-key (kbd "<f7>") 'origami-toggle-node)
+(global-set-key (kbd "<S-f7>") 'origami-toggle-all-nodes)
