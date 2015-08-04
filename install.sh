@@ -19,7 +19,7 @@ done
 
 case $OSTYPE in
     *cygwin*)
-        link ${CURRENTDIR}/.keysnail.js ${USERPROFILE}/
+        cp ${CURRENTDIR}/.keysnail.js ${USERPROFILE}/
         ;;
     *)
         link ${CURRENTDIR}/.keysnail.js ${HOME}/
