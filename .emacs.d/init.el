@@ -39,6 +39,7 @@
         ac-emmet
         web-mode
         origami
+        anzu
         ))
 
 (let ((package-refreshed nil))
@@ -177,3 +178,8 @@
 
 (global-set-key (kbd "<S-f7>") 'origami-toggle-all-nodes)
 (global-set-key (kbd "<f7>") 'origami-recursively-toggle-node)
+
+
+(global-anzu-mode 1)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)

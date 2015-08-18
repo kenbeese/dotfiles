@@ -1,3 +1,9 @@
+;;   以下のようなをファイルを作成しとく
+;; #+NAME $HOME/.aspell.conf
+;; #+BEGIN_SRC conf
+;;   lang en_US
+;; #+END_SRC
+
 (if (not (executable-find "aspell"))
     (warn "Aspell is not found please install.")
 
@@ -10,12 +16,15 @@
                                      default-generic-mode-hook
                                      markdown-mode-hook
                                      text-mode-hook
-                                     org-mode-hook))
+                                     org-mode-hook
+                                     web-mode-hook
+                                     ))
 
   (setq flyspell-prog-enable-mode-hooks '(python-mode-hook
                                           c-mode-hook
                                           c++-mode-hook
-                                          emacs-lisp-mode-hook))
+                                          emacs-lisp-mode-hook
+                                          ))
 
   (dolist (mode flyspell-enable-mode-hooks)
     (add-hook mode
