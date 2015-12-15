@@ -1,7 +1,7 @@
 ;;; flex-autopair
 (global-flex-autopair-mode t)
 (setq flex-autopair-disable-modes
-      '(emacs-lisp-mode lisp-interaction-mode lisp-mode ilem-mode))
+      '(emacs-lisp-mode lisp-interaction-mode lisp-mode ilem-mode web-mode))
 
 
 ;; auto-highlight-symbol

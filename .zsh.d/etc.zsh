@@ -75,3 +75,40 @@ fi
 #                             For report time                             #
 ###########################################################################
 REPORTTIME=3
+
+ssh-start () {
+    ssh-agent > "$HOME/.ssh/agent-env"
+    source "$HOME/.ssh/agent-env"
+    ssh-add
+}
+
+ssh-reagent () {
+    pgrep ssh-agent >/dev/null 2>&1
+    if [[ $? == 1 ]]; then
+        \rm -r /tmp/ssh-*
+        ssh-start
+        return
+    fi
+    local -a agents
+    local files
+    case $OSTYPE in
+        *darwin*)
+            files="$(\ls /var/folders/**/ssh-*/agent.*)"
+            ;;
+        *)
+            files="$(\ls /tmp/ssh-*/agent.*)"
+            ;;
+    esac
+    : ${(A)agents::=${(f)${files}}}
+    for agent in $agents; do
+        export SSH_AUTH_SOCK=$agent
+        if ssh-add -l 2>&1 > /dev/null; then
+            echo Found working SSH Agent:
+            ssh-add -l
+            return
+        fi
+    done
+    ssh-start
+}
+
+ssh-reagent

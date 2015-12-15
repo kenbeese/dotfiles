@@ -11,7 +11,7 @@ link () {
 
 (cd $CURRENTDIR && git submodule update --init)
 
-HOGE=(".tmux.conf" ".zshenv" ".zsh.d" ".emacs.d" ".gitconfig")
+HOGE=(".tmux.conf" ".zshenv" ".zsh.d" ".emacs.d" ".gitconfig" ".aspell.conf")
 for ofile in ${HOGE[@]}; do
     link ${CURRENTDIR}/${ofile} ${HOME}/
 done
