@@ -24,6 +24,8 @@ set_env() {
         export LESSOPEN="| src-hilite-lesspipe.sh %s"
     fi
     manpath=($HOME/man(N-/) $manpath)
+    export PYENV_ROOT=${HOME}/.pyenv
+    path=(${PYENV_ROOT}/bin(N-/) $path)
 }
 
 set_darwin_env() {
