@@ -42,3 +42,5 @@
 ;; recentf
 (setq recentf-max-saved-items 1000)
 (run-with-idle-timer 600 t 'recentf-save-list)
+
+(global-auto-revert-mode 1)
