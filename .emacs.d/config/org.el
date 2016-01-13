@@ -1,11 +1,5 @@
-(when (eq system-type 'cygwin)
-  (setq org-directory "/c/Users/takagi/Documents/Memo/")
-  (setq org-default-notes-file (expand-file-name "master.org" org-directory))
-  (setq org-agenda-files (list org-default-notes-file))
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c l") 'org-store-link)
-  )
-
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c l") 'org-store-link)
 
 (setq org-todo-keywords '((sequence "TODO" "STARTED" "|" "DONE")))
 (setq org-clock-in-switch-to-state "STARTED")
