@@ -10,8 +10,8 @@
 [ -f ~/.zsh.d/etc.zsh ] && source ~/.zsh.d/etc.zsh
 [ -f ~/.zsh.d/local.zsh ] && source ~/.zsh.d/local.zsh
 
-if [ -d "${PYENV_ROOT}" ]; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)";fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)";fi
+
+
 #zprof

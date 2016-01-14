@@ -34,15 +34,12 @@ set_darwin_env() {
     export VISUAL="/usr/local/bin/emacsclient -nw"
     path=(/usr/local/sbin
           /usr/local/bin
-          /Library/Frameworks/Python.framework/Versions/2.7/bin(N-/)
-          /usr/local/texlive/2013/bin/x86_64-darwin(N-/)
-          ${HOME}/workspaces/gocode/bin
-          /usr/local/opt/llvm/bin(N-/)
           $path
     )
-
     export GNUTERM='x11'
-    dyld_library_path=(/Users/kentaro/nora/lib /usr/local/opt/llvm/lib $dyld_library_path)
+    dyld_library_path=(/Users/kentaro/nora/lib(N-/) $dyld_library_path)
+
+    export PYENV_ROOT=/usr/local/var/pyenv
 }
 
 set_cygwin_env() {
@@ -51,6 +48,7 @@ set_cygwin_env() {
     export GIT_EDITOR="emacsclient --socket-name=~/.emacs.d/server -nw"
     export VISUAL="emacsclient --socket-name=~/.emacs.d/server -nw"
     export TMUX_TMPDIR="/var/run/tmux"
+    export LANG=C
     [ -f ~/.minttyrc.solarized.dark ] && source ~/.minttyrc.solarized.dark
 }
 

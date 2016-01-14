@@ -87,7 +87,7 @@ case ${UID} in
   RPROMPT=$'%{$BLACK_BOLD%}<%{$reset_color%}%{$GREEN%}%n@%m%{${reset_color}%}%{$BLACK_BOLD%}>%{$reset_color%}'
   PROMPT2="%{$GREEN%}%_%%%{${reset_color}%} "
   SPROMPT="%{$GREEN%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+  # [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
   PROMPT="%{$YELLOW%}@${HOST%%.*}"$'\n'"${PROMPT}"
   ;;
 esac

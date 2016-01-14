@@ -201,6 +201,10 @@ key.setGlobalKey(['C-x', 'n'], function (ev) {
     OpenBrowserWindow();
 }, 'ウィンドウを開く');
 
+key.setGlobalKey("C-t", function () {
+    document.getElementById("cmd_newNavigatorTab").doCommand();
+}, "タブを開く");
+
 key.setGlobalKey(['C-x', 'C-c'], function (ev) {
     goQuitApplication();
 }, 'Firefox を終了', true);

@@ -44,3 +44,8 @@
 (run-with-idle-timer 600 t 'recentf-save-list)
 
 (global-auto-revert-mode 1)
+
+;; anzu-mode
+(global-anzu-mode 1)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)

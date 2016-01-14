@@ -1,2 +1,6 @@
 jupyter
 matplotlib
+autopep8
+flake8
+flake8-docstrings
+pep8-naming

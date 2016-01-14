@@ -52,6 +52,7 @@
 
 
 
+(setq init-loader-byte-compile t)
 (init-loader-load (locate-user-emacs-file "init-loader"))
 
 ;; misc
@@ -175,11 +176,5 @@
 
 
 (global-origami-mode 1)
-
 (global-set-key (kbd "<S-f7>") 'origami-toggle-all-nodes)
 (global-set-key (kbd "<f7>") 'origami-recursively-toggle-node)
-
-
-(global-anzu-mode 1)
-(global-set-key (kbd "M-%") 'anzu-query-replace)
-(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
