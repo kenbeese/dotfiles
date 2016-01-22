@@ -40,6 +40,8 @@
         web-mode
         origami
         anzu
+        protobuf-mode
+        yaml-mode
         ))
 
 (let ((package-refreshed nil))
