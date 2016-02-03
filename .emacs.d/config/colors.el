@@ -1,11 +1,27 @@
 ;; color-theme
-(load-theme 'solarized-light t)
-(disable-theme 'solarized-light)
+;; (load-theme 'solarized-light t)
+;; (disable-theme 'solarized-light)
 (load-theme 'solarized-dark t)
 (disable-theme 'solarized-dark)
 
 ;(enable-theme 'solarized-light)
 (enable-theme 'solarized-dark)
+
+(defun text-scale-increase-around (f &rest args)
+  (if (and solarized-use-variable-pitch
+           (not (eq args 0))
+           (eq text-scale-mode-amount 0)
+           )
+      (let ((solarized-use-variable-pitch nil))
+        (load-theme 'solarized-dark t)
+        ))
+  (apply f args)
+  (if (and solarized-use-variable-pitch
+           (not (eq args 0))
+           (eq text-scale-mode-amount 0))
+      (load-theme 'solarized-dark t))
+  )
+(advice-add 'text-scale-increase :around #'text-scale-increase-around)
 
 ;; (defun knbs-change-solarized-theme ()
 ;;   (interactive)
