@@ -507,17 +507,21 @@ key.setEditKey('C-y', command.yank, '貼り付け (Yank)');
 key.setEditKey('M-y', command.yankPop, '古いクリップボードの中身を順に貼り付け (Yank pop)', true);
 
 key.setEditKey('C-M-y', function (ev) {
-    if (!command.kill.ring.length) return;
+    if (!command.kill.ring.length)
+        return;
 
-    let(ct = command.getClipboardText()) {(!command.kill.ring.length || ct != command.kill.ring[0]) && command.pushKillRing(ct);};
+    let ct = command.getClipboardText();
+    if (!command.kill.ring.length || ct != command.kill.ring[0]) {
+        command.pushKillRing(ct);
+    }
 
-    prompt.selector({
-        message: "Paste:",
-        collection: command.kill.ring,
-        callback: function (i) {
-            if (i >= 0) key.insertText(command.kill.ring[i]);
+    prompt.selector(
+        {
+            message: "Paste:",
+            collection: command.kill.ring,
+            callback: function (i) { if (i >= 0) key.insertText(command.kill.ring[i]); }
         }
-    });
+    );
 }, '以前にコピーしたテキスト一覧から選択して貼り付け', true);
 
 key.setEditKey('C-w', function (ev) {
