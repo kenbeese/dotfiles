@@ -10,6 +10,12 @@
 [ -f ~/.zsh.d/etc.zsh ] && source ~/.zsh.d/etc.zsh
 [ -f ~/.zsh.d/local.zsh ] && source ~/.zsh.d/local.zsh
 
-if which pyenv > /dev/null; then eval "$(pyenv init -)";fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)";fi
+if [ $TERM="screen" -o $TERM = "screen-256color" ]
+then
+    if which pyenv > /dev/null
+    then
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
+    fi
+fi
 #zprof
