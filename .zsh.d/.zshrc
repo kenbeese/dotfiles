@@ -10,10 +10,8 @@
 [ -f ~/.zsh.d/etc.zsh ] && source ~/.zsh.d/etc.zsh
 [ -f ~/.zsh.d/local.zsh ] && source ~/.zsh.d/local.zsh
 
-if [ $TERM="screen" -o $TERM = "screen-256color" ]
-then
-    if which pyenv > /dev/null
-    then
+if [ "$TERM" = "screen-256color" -o "$TERM" = "screen" ]; then
+    if which pyenv > /dev/null; then
         eval "$(pyenv init -)"
         eval "$(pyenv virtualenv-init -)"
     fi

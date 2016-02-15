@@ -1,7 +1,9 @@
 jupyter
+jupyter-emacskeys
 matplotlib
 pandas
 autopep8
 flake8
 flake8-docstrings
 pep8-naming
+https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip
