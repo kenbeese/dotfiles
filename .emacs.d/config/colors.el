@@ -54,6 +54,6 @@
                     :inverse-video nil)
 
 (setq whitespace-space-regexp "\\(\u3000+\\)")  ;; スペースは全角のみを可視化
-(setq whitespace-global-modes '(not term-mode org-mode))
+(setq whitespace-global-modes '(not term-mode org-mode picture-mode artist-mode))
 (global-whitespace-mode 1)
 (setq-default show-trailing-whitespace t)

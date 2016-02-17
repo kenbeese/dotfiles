@@ -51,3 +51,50 @@
              (quote ((agenda todo-state-up time-up tag-up priority-down) )))
             ))
           ))
+
+
+(setq org-ditaa-jar-path  (concat user-emacs-directory "utils/jditaa.jar"))
+(setq org-ditaa-jar-option "-Dfile.encoding=UTF-8 -jar")
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t)))
+(when (eq system-type 'cygwin)
+  (setq org-babel-ditaa-java-cmd "/c/Program\\ Files\\ \\(x86\\)/Java/jdk1.8.0_74/bin/java")
+
+  (defun transform-cygpath (path)
+    (format "`cygpath -w %s`" path))
+
+  (require 'ob-ditaa)
+  (defun org-babel-execute:ditaa (body params)
+    "Execute a block of Ditaa code with org-babel.
+This function is called by `org-babel-execute-src-block'."
+    (let* ((result-params (split-string (or (cdr (assoc :results params)) "")))
+           (out-file (let ((el (cdr (assoc :file params))))
+                       (or el
+                           (error
+                            "ditaa code block requires :file header argument"))))
+           (cmdline (cdr (assoc :cmdline params)))
+           (java (cdr (assoc :java params)))
+           (in-file (org-babel-temp-file "ditaa-"))
+           (eps (cdr (assoc :eps params)))
+           (cmd (concat org-babel-ditaa-java-cmd
+                        " " java " " org-ditaa-jar-option " "
+                        (transform-cygpath
+                         (shell-quote-argument
+                          (expand-file-name
+                           (if eps org-ditaa-eps-jar-path org-ditaa-jar-path))))
+                        " " cmdline
+                        " " (transform-cygpath (org-babel-process-file-name in-file))
+                        " " (transform-cygpath (org-babel-process-file-name out-file))))
+           (pdf-cmd (when (and (or (string= (file-name-extension out-file) "pdf")
+                                   (cdr (assoc :pdf params))))
+                      (concat
+                       "epstopdf"
+                       " " (org-babel-process-file-name (concat in-file ".eps"))
+                       " -o=" (org-babel-process-file-name out-file)))))
+      (unless (file-exists-p org-ditaa-jar-path)
+        (error "Could not find ditaa.jar at %s" org-ditaa-jar-path))
+      (with-temp-file in-file (insert body))
+      (message cmd) (shell-command cmd)
+      (when pdf-cmd (message pdf-cmd) (shell-command pdf-cmd))
+      nil)))
