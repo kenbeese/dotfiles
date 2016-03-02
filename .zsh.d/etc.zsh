@@ -95,6 +95,9 @@ ssh-reagent () {
         *darwin*)
             files="$(\ls /var/folders/**/ssh-*/agent.*)"
             ;;
+        *cygwin*)
+            return
+            ;;
         *)
             files="$(\ls /tmp/ssh-*/agent.*)"
             ;;
@@ -110,5 +113,3 @@ ssh-reagent () {
     done
     ssh-start
 }
-
-ssh-reagent
