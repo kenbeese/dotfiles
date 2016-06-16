@@ -40,9 +40,9 @@ ls_color_theme=ansi-universal
 
 # lsのカラー設定
 if type dircolors > /dev/null 2>&1 ;then
-    eval $(dircolors ${ls_dircolors_home}${ls_color_theme})
+    eval $(dircolors -b ${ls_dircolors_home}${ls_color_theme})
 elif type gdircolors > /dev/null 2>&1 ;then
-    eval $(gdircolors ${ls_dircolors_home}${ls_color_theme})
+    eval $(gdircolors -b ${ls_dircolors_home}${ls_color_theme})
 fi
 
 #lsのカラーと補完リストの色を同じにする

@@ -93,6 +93,7 @@
 ;; フォントサイズ リセット
 (global-set-key (kbd "M-0") '(lambda() (interactive) (text-scale-set 0)))
 
+(set-face-attribute 'default nil :height 105)
 
 ;; split-windowの挙動
 (setq split-height-threshold nil)
