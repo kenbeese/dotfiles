@@ -49,3 +49,12 @@
 (global-anzu-mode 1)
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
+
+
+;; auto-save-buffer-enhanced
+
+(require 'auto-save-buffers-enhanced)
+(setq auto-save-buffers-enhanced-include-regexps
+      (list (rx (or "master.org" "serverhistory.org" "memo.org"))))
+(setq auto-save-buffers-enhanced-interval 60)
+(auto-save-buffers-enhanced t)

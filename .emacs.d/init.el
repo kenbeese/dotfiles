@@ -43,6 +43,7 @@
         anzu
         protobuf-mode
         yaml-mode
+        auto-save-buffers-enhanced
         ))
 
 (let ((package-refreshed nil))
