@@ -54,6 +54,11 @@ set_cygwin_env() {
     export TMUX_TMPDIR="/var/run/tmux"
     export LANG=C
     [ -f ~/.minttyrc.solarized.dark ] && source ~/.minttyrc.solarized.dark
+    path=(/usr/local/texlive/2016/bin/i386-cygwin
+          $path
+    )
+
+
 }
 
 set_os_env() {

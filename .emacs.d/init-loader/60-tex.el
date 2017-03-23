@@ -1,0 +1,1 @@
+/home/dotfiles/.emacs.d/config/tex.el
