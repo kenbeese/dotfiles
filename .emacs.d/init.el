@@ -44,6 +44,7 @@
         protobuf-mode
         yaml-mode
         auto-save-buffers-enhanced
+        import-popwin
         ))
 
 (let ((package-refreshed nil))
