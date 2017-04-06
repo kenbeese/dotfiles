@@ -1,1 +1,1 @@
-/home/dotfiles/.emacs.d/config/tex.el
+../config/tex.el
