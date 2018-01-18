@@ -1,3 +1,6 @@
+;; default encoding
+(prefer-coding-system 'utf-8)
+
 ;; indentの設定
 (setq-default tab-width 4 indent-tabs-mode nil)
 (setq standard-indent 2)

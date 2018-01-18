@@ -14,3 +14,7 @@
 ;;; cygwinだと遅い
 (unless (eq 'cygwin system-type)
   (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
+
+(defun py-autopep8-disable-on-save ()
+  (interactive)
+  (remove-hook 'before-save-hook 'py-autopep8-buffer t))

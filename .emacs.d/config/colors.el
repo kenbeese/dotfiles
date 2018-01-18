@@ -21,7 +21,7 @@
            (eq text-scale-mode-amount 0))
       (load-theme 'solarized-dark t))
   )
-(advice-add 'text-scale-increase :around #'text-scale-increase-around)
+;; (advice-add 'text-scale-increase :around #'text-scale-increase-around)
 
 ;; (defun knbs-change-solarized-theme ()
 ;;   (interactive)

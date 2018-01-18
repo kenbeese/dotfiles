@@ -76,6 +76,8 @@ set_os_env() {
 typeset -xT PYTHONPATH pythonpath
 typeset -xT LD_LIBRARY_PATH ld_library_path
 typeset -xT DYLD_LIBRARY_PATH dyld_library_path
-typeset -U path manpath cdpath fpath pythonpath ld_library_path dyld_library_path
+typeset -xT LIBRARY_PATH library_path
+typeset -xT CPATH cpath
+typeset -U path manpath cdpath fpath pythonpath ld_library_path dyld_library_path library_path cpath
 set_env
 set_os_env
