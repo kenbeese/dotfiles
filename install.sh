@@ -16,6 +16,8 @@ for ofile in ${HOGE[@]}; do
     link ${CURRENTDIR}/${ofile} ${HOME}/
 done
 
+touch ${CURRENTDIR}/.emacs.d/config/local.el
+
 
 case $OSTYPE in
     *cygwin*)
