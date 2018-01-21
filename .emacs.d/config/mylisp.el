@@ -1,6 +1,6 @@
 ;;region選択がactiveじゃなければ、後方の単語削除
 (defadvice kill-region (around kill-word-or-kill-region activate)
-  (if (and (called-interactively-p) transient-mark-mode (not mark-active))
+  (if (and (called-interactively-p 'any) transient-mark-mode (not mark-active))
       (backward-kill-word 1)
     ad-do-it))
 
