@@ -9,6 +9,7 @@
 (defun helm-mini ()
     "Preconfigured `helm' lightweight version \(buffer -> recentf\)."
     (interactive)
+    (require 'helm-for-files)
     (require 'helm-buffers)
     (require 'helm-files)
     (unless helm-source-buffers-list

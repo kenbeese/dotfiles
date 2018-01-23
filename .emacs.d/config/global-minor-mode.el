@@ -40,9 +40,13 @@
 
 
 ;; recentf
+(require 'recentf)
 (setq recentf-max-saved-items 1000)
 (let ((hostname (or (getenv "HOST") (getenv "HOSTNAME"))))
-  (setq recentf-save-file (concat "~/.recentf." hostname)))
+  (if hostname
+      (setq recentf-save-file (concat "~/.recentf." hostname))
+    )
+  )
 (run-with-idle-timer 600 t 'recentf-save-list)
 
 
