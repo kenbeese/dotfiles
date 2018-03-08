@@ -48,6 +48,7 @@
     )
   )
 (run-with-idle-timer 600 t 'recentf-save-list)
+(recentf-mode 1)
 
 
 ;; anzu-mode

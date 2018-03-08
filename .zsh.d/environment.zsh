@@ -14,6 +14,7 @@ set_env() {
         $HOME/.local/bin(N-/)
         ${HOME}/workspaces/gocode/bin
         /usr/local/cuda/bin(N-/)
+        /usr/local/texlive/2017/bin/x86_64-linux(N-/)
         $path)
     ld_library_path=(${HOME}/nora/lib(N-/)
                      /usr/local/cuda/lib(N-/)
@@ -54,7 +55,7 @@ set_cygwin_env() {
     export TMUX_TMPDIR="/var/tmp"
     export LANG=C
     [ -f ~/.minttyrc.solarized.dark ] && source ~/.minttyrc.solarized.dark
-    path=(/usr/local/texlive/2016/bin/i386-cygwin
+    path=(/usr/local/texlive/2017/bin/i386-cygwin
           $path
     )
 

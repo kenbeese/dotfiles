@@ -24,7 +24,7 @@
         helm
         helm-dired-recent-dirs
         markdown-mode
-        eldoc-extension
+        ;; eldoc-extension
         paredit
         term+
         term+key-intercept
@@ -116,9 +116,14 @@
 ;;; @ language - fontset                                            ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+  ;; abcdefghij
+  ;; あいうえお
+  ;; サイズは1.5の倍数にしないと1:2にならない
+  ;; 例 9, 10.5, 12, 13.5
   ;; デフォルト フォント
   ;; (set-face-attribute 'default nil :family "Migu 1M" :height 110)
   (set-face-font 'default "Migu 1M-11:antialias=standard")
+
 
   ;; プロポーショナル フォント
   ;; (set-face-attribute 'variable-pitch nil :family "Migu 1M" :height 110)
@@ -131,11 +136,15 @@
   ;; ツールチップ表示フォント
   ;; (set-face-attribute 'tooltip nil :family "Migu 1M" :height 90)
   (set-face-font 'tooltip "Migu 1M-9:antialias=standard")
-
-
-
   )
 
+(defun set-ricty-font ()
+  (interactive)
+  (set-face-font 'default "Ricty-12")
+  (set-face-font 'variable-pitch "Ricty-12")
+  (set-face-font 'fixed-pitch "Ricty-12")
+  (set-face-font 'tooltip "Ricty-10.5")
+  )
 
 ;; 同一バッファ名にディレクトリ付与
 (require 'uniquify)
