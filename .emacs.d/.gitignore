@@ -4,3 +4,4 @@ backup
 history
 tramp
 *.elc
+config/local.el
