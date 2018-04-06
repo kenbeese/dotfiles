@@ -27,7 +27,22 @@ if [ -f  ~/.zsh.d/zaw/zaw.zsh ] ;then
     bindkey -M filterselect '^E' accept-search
     [ -f  ~/.bibtex_source/bibtex.zsh ] && source ~/.bibtex_source/bibtex.zsh
     zstyle ':filter-select:highlight' selected bg=cyan,standout
+
+    function my_compact_chpwd_recent_dirs() {
+        emulate -L zsh
+        setopt extendedglob
+        local -aU reply
+        integer history_size
+        autoload -Uz chpwd_recent_filehandler
+        chpwd_recent_filehandler
+        histor_size=$#reply
+        reply=(${^reply}(N))
+        (( $history_size == $#reply )) || chpwd_recent_filehandler $reply
+    }
+
+    my_compact_chpwd_recent_dirs
 fi
+
 
 
 
