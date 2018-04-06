@@ -12,6 +12,7 @@ if [ -f  ~/.zsh.d/zaw/zaw.zsh ] ;then
     add-zsh-hook chpwd chpwd_recent_dirs
     zstyle ':chpwd:*' recent-dirs-max 5000
     zstyle ':chpwd:*' recent-dirs-default yes
+    zstyle ':chpwd:*' recent-dirs-file ${ZDOTDIR:-$HOME}/.chpwd-recent-dirs.${HOST}
     zstyle ':completion:*' recent-dirs-insert both
 
     [ -f ~/.zsh.d/zaw/zaw.zsh ] && source ~/.zsh.d/zaw/zaw.zsh

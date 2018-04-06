@@ -29,8 +29,17 @@ set_env() {
     fi
     manpath=($HOME/man(N-/) $manpath)
 
-    export PYENV_ROOT="${HOME}/.pyenv"
-    path=(${PYENV_ROOT}/bin(N-/) $path)
+
+    if [ -d "${HOME}/.pyenv" ]; then
+        export PYENV_ROOT="${HOME}/.pyenv"
+        path=(${PYENV_ROOT}/bin(N-/) $path)
+    fi
+
+    ld_library_path=(${HOME}/.cudnn/active/cuda/lib64(N-/) $ld_library_path)
+    cpath=(${HOME}/.cudnn/active/cuda/include(N-/) $cpath)
+    library_path=(${HOME}/.cudnn/active/cuda/lib64(N-/) $library_path)
+
+
 }
 
 set_darwin_env() {
