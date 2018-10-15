@@ -15,7 +15,8 @@
 (show-paren-mode 1)
 
 ;; C-hのbackspace化
-(keyboard-translate ?\C-h ?\C-?)
+(define-key key-translation-map [?\C-h] [?\C-?])
+;(keyboard-translate ?\C-h ?\C-?)
 
 ;;; row数の表示
 (line-number-mode 1)
