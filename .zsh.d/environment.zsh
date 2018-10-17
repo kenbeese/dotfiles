@@ -71,6 +71,18 @@ set_cygwin_env() {
 
 }
 
+set_wsl_env() {
+    if builtin command tasklist.exe > /dev/null ; then
+        command_path="/mnt/c/Program Files/VcXsrv/vcxsrv.exe"
+        command_name=$(basename "$command_path")
+        if ! tasklist.exe 2> /dev/null | grep -q "$command_name"; then
+            "$command_path" :0 -multiwindow -wgl &
+        fi
+        export DISPLAY="localhost:0.0"
+    fi
+}
+
+
 set_os_env() {
     case $OSTYPE in
         *darwin*)
@@ -91,3 +103,4 @@ typeset -xT CPATH cpath
 typeset -U path manpath cdpath fpath pythonpath ld_library_path dyld_library_path library_path cpath
 set_env
 set_os_env
+set_wsl_env
