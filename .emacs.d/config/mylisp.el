@@ -17,3 +17,34 @@
   (eww-browse-url (alc-word-url word) t))
 
 (global-set-key (kbd "C-c w") 'eww-goto-alc)
+
+
+(defun set-ricty-font ()
+  (interactive)
+  (set-face-font 'default "Ricty-12")
+  (set-face-font 'variable-pitch "Ricty-12")
+  (set-face-font 'fixed-pitch "Ricty-12")
+  (set-face-font 'tooltip "Ricty-10.5")
+  )
+
+
+
+(defun my-replace-strings-in-region-by-list ($list)
+  "Replace strings in a region according to $list"
+  (if mark-active
+      (let* (($beg (region-beginning))
+             ($end (region-end))
+             ($word (buffer-substring-no-properties $beg $end)))
+        (mapc (lambda ($r)
+                (setq $word (replace-regexp-in-string (car $r) (cdr $r) $word)))
+              $list)
+        $word)
+    (error "Need to make region")))
+
+
+(defun copy-region-remove-newline ()
+  (interactive)
+  (let ((body (my-replace-strings-in-region-by-list '(("\n" . "")))))
+    (deactivate-mark)
+    (kill-new body)
+    ))

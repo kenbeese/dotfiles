@@ -102,3 +102,28 @@
 ;; split-windowの挙動
 (setq split-height-threshold nil)
 (setq split-width-threshold 160)
+
+
+;; 同一バッファ名にディレクトリ付与
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(setq uniquify-ignore-buffers-re "*[^*]+*")
+
+
+;; emacs-server起動
+(require 'server)
+(when (eq 'cygwin system-type)
+  (defun server-ensure-safe-dir (dir) "Noop" t)
+  (setq server-socket-dir "~/.emacs.d"))
+(unless (server-running-p)
+  (server-start)
+  )
+(global-set-key (kbd "C-x C-c") 'server-edit)
+(defalias 'exit 'save-buffers-kill-emacs)
+
+
+
+(global-origami-mode 1)
+(global-set-key (kbd "<S-f7>") 'origami-toggle-all-nodes)
+(global-set-key (kbd "<f7>") 'origami-recursively-toggle-node)
