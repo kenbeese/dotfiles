@@ -113,3 +113,10 @@ ssh-reagent () {
     done
     ssh-start
 }
+
+
+# For windows path to linux path
+
+win2lin () {
+   echo "$1" | sed -e 's|\\|/|g' -e 's/^./\L&\E/g' -e 's/://' -e 's|^|/mnt/|'
+}

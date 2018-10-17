@@ -4,4 +4,4 @@ $dvipdf = 'dvipdfmx %O -o %D %S';
 $makeindex = 'mendex %O -o %D %S';
 $max_repeat = 10;
 $pdf_mode = 3;
-$pdf_previewer = '"C:\Program Files\SumatraPDF\SumatraPDF.exe" -reuse-instance %O %S';
+$pdf_previewer = 'SumatraPDF -reuse-instance %O %S';

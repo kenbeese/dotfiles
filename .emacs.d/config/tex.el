@@ -46,6 +46,8 @@
 
 ;; sumatrapdf option
 ;; c:\cygwin\usr\local\share\emacs\bin\emacsclientw.exe +%l "%f"
+;; for wsl
+;; bash -c "emacsclient -n +%l $$(echo '%f'|sed -e 's|\\|/|g' -e 's/^./\L&\E/g' -e 's/://' -e 's|^|/mnt/|')"
 ;;
 ;; kinsoku.el
 ;;
