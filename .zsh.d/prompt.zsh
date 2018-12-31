@@ -60,10 +60,10 @@ local smiley='\`-'"%(?,%{$fg[blue]%}>%{$reset_color%},%{$fg[red]%}>%{$reset_colo
 function lines_separator() {
     local git_info git_bname color_prmpt num line_num
     local line='-'
-    if [ $OSTYPE = cygwin ]; then
-        git_info=""
+    if type vcs_super_info > /dev/null 2>&1; then
+	git_info=$(vcs_super_info)
     else
-        git_info=$(vcs_super_info)
+	git_info=""
     fi
     color_prmpt="%{$BLUE_BOLD%}.-%{$reset_color%}%{$BLUE%}[%{$reset_color%}%{$CYAN%}%~%{$BLUE%}]%{$reset_color%}${git_info}%{$reset_color%}"
     num=${#${(S%%)color_prmpt//(\%([KF1]|)\{*\}|\%[Bbkf])}}
