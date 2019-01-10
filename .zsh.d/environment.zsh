@@ -72,7 +72,7 @@ set_cygwin_env() {
 }
 
 set_wsl_env() {
-    if builtin command tasklist.exe > /dev/null ; then
+    if builtin command -v tasklist.exe > /dev/null ; then
         command_path="/mnt/c/Program Files/VcXsrv/vcxsrv.exe"
         command_name=$(basename "$command_path")
         if ! tasklist.exe 2> /dev/null | grep -q "$command_name"; then
