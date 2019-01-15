@@ -1,8 +1,10 @@
+;;; jedi
 ;;; flake8
 ;;; flake8-docstrings
-;;; virtualenv
 ;;; pep8-naming
 ;;; autopep8
+;;; yapf
+
 
 ;; (defun knbs-jedi:start ()
 ;;   (interactive)
@@ -35,6 +37,30 @@
   (elpy-enable)
   )
 
-(defun py-autopep8-disable-on-save ()
+
+(use-package pyenv-mode
+  :init
+  (add-to-list 'exec-path "~/.pyenv/shims")
+  (setenv "WORKON_HOME" "~/.pyenv/versions/")
+  :config
+  (pyenv-mode)
+  :bind
+  ("C-x p e" . pyenv-activate-current-project)
+  :hook
+  (find-file . pyenv-mode-auto-hook)
+  )
+
+(defun pyenv-mode-auto-hook ()
+  "Automatically activates pyenv version if .python-version file exists."
+  (f-traverse-upwards
+   (lambda (path)
+     (let ((pyenv-version-path (f-expand ".python-version" path)))
+       (if (f-exists? pyenv-version-path)
+           (progn
+             (pyenv-mode-set (car (s-lines (s-trim (f-read-text pyenv-version-path 'utf-8)))))
+             t))))))
+
+(defun pyenv-activate-current-project ()
+  "Automatically activates pyenv version if .python-version file exists."
   (interactive)
-  (remove-hook 'before-save-hook 'py-autopep8-buffer t))
+  (pyenv-mode-auto-hook))

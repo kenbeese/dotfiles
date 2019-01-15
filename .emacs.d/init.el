@@ -26,7 +26,7 @@
 ;;   (when (< emacs-major-version 24)
 ;;     ;; For important compatibility libraries like cl-lib
 ;;     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-;; (add-to-list 'package-archives (cons "melpa-stable" "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives (cons "melpa-stable" "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives (cons "melpa" "http://melpa.org/packages/") t)
 (add-to-list 'package-archives (cons "org"  "http://orgmode.org/elpa/") t)
 (package-initialize)
@@ -53,7 +53,7 @@
         ;; jedi
         ;; ac-emmet
         elpy
-        py-autopep8
+        pyenv-mode
 
         markdown-mode
 
