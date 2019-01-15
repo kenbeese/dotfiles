@@ -11,13 +11,31 @@
   )
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;; (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+;;                     (not (gnutls-available-p))))
+;;        (proto (if no-ssl "http" "https")))
+;;   (when no-ssl (warn "\
+;; Your version of Emacs does not support SSL connections,
+;; which is unsafe because it allows man-in-the-middle attacks.
+;; There are two things you can do about this warning:
+;; 1. Install an Emacs version that does support SSL and be safe.
+;; 2. Remove this warning from your init file so you won't see it again."))
+;;   ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+;;   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+;;   (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+;;   (add-to-list 'package-archives (cons "org"  (concat proto "://orgmode.org/elpa/")) t)
+;;   (when (< emacs-major-version 24)
+;;     ;; For important compatibility libraries like cl-lib
+;;     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+;; (add-to-list 'package-archives (cons "melpa-stable" "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives (cons "melpa" "http://melpa.org/packages/") t)
+(add-to-list 'package-archives (cons "org"  "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 
 (setq knbs-favorite-packages
       '(
+        use-package
         init-loader
         auto-complete
         solarized-theme
@@ -56,26 +74,14 @@
       (package-install package))))
 
 
+(require 'use-package)
 
-;; abcdefghij
-;; あいうえお
-;; サイズは1.5の倍数にしないと1:2にならない
-;; 例 9, 10.5, 12, 13.5
-;; デフォルト フォント
-(defun set-ricty-font ()
-  (interactive)
-  (set-face-font 'default "Ricty-12")
-  (set-face-font 'variable-pitch "Ricty-12")
-  (set-face-font 'fixed-pitch "Ricty-12")
-  (set-face-font 'tooltip "Ricty-10.5")
-  )
-
-
-(setq init-loader-byte-compile t)
-(init-loader-load (locate-user-emacs-file "init-loader"))
+(use-package init-loader
+             :config
+             (setq init-loader-byte-compile t)
+             (init-loader-load (locate-user-emacs-file "init-loader")))
 
 ;; misc
-
 
 ;; (set-language-environment "UTF-8") ;; UTF-8でも問題ないので適宜コメントアウトしてください
 
@@ -172,5 +178,16 @@
 (setq csv-separators '("," "	"))
 (add-to-list 'auto-mode-alist '("\\.[Tt][Ss][Vv]\\'" . csv-mode))
 
-;; term+
-(setq term+shell-history-dont-exec t)
+
+;; abcdefghij
+;; あいうえお
+;; サイズは1.5の倍数にしないと1:2にならない
+;; 例 9, 10.5, 12, 13.5
+;; デフォルト フォント
+(defun set-ricty-font ()
+  (interactive)
+  (set-face-font 'default "Ricty-12")
+  (set-face-font 'variable-pitch "Ricty-12")
+  (set-face-font 'fixed-pitch "Ricty-12")
+  (set-face-font 'tooltip "Ricty-10.5")
+  )
