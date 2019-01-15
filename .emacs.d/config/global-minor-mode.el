@@ -8,10 +8,32 @@
 (global-auto-highlight-symbol-mode t)
 (add-to-list 'ahs-modes 'js2-mode)
 
+
+(use-package company
+  :bind
+  (:map company-active-map
+        ("M-n" . nil)
+        ("M-p" . nil)
+        ("C-n" . 'company-select-next)
+        ("C-p" . 'company-select-previous)
+        ("C-h" . nil)
+        ([tab] . company-complete-common-or-cycle)
+        ("<tab>" . company-complete-common-or-cycle)
+        ("TAB" . company-complete-common-or-cycle)
+)
+  :config
+  (global-company-mode)
+  (setq company-transformers '(company-sort-by-backend-importance))
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2)
+  (setq company-selection-wrap-around t)
+)
+
+
 ;;; auto-complete
-(ac-config-default)
-(ac-flyspell-workaround)
-(add-to-list 'ac-modes 'html-mode)
+;; (ac-config-default)
+;; (ac-flyspell-workaround)
+;; (add-to-list 'ac-modes 'html-mode)
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 ;;; @ search - migemo                                               ;;;
 ;;;   https://github.com/emacs-jp/migemo                            ;;;

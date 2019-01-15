@@ -1,5 +1,4 @@
 ;; package
-
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
@@ -37,32 +36,37 @@
       '(
         use-package
         init-loader
-        auto-complete
+        company
         solarized-theme
         helm
         helm-dired-recent-dirs
-        markdown-mode
-        ;; eldoc-extension
         paredit
-        term+
-        term+key-intercept
-        term+mux
         auto-highlight-symbol
         migemo
-        jedi
-        py-autopep8
-        js2-mode
         flycheck-tip
         flex-autopair
-        emmet-mode
-        ac-emmet
-        web-mode
-        origami
         anzu
-        protobuf-mode
-        yaml-mode
         auto-save-buffers-enhanced
         import-popwin
+
+        ;; auto-complete
+        ;; jedi
+        ;; ac-emmet
+        elpy
+        py-autopep8
+
+        markdown-mode
+
+        emmet-mode
+        web-mode
+
+        origami
+
+        js2-mode
+
+        protobuf-mode
+
+        yaml-mode
         ))
 
 (let ((package-refreshed nil))
