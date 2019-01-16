@@ -34,28 +34,24 @@
 
 (setq knbs-favorite-packages
       '(
-        use-package
-        init-loader
-        company
-        solarized-theme
+        use-package init-loader
+        company auto-yasnippet
         helm
-        paredit
+        solarized-theme
+        paredit flex-autopair
         auto-highlight-symbol
-        migemo
-        flycheck-tip
-        flex-autopair
-        anzu
+        migemo anzu
+        flycheck flycheck-tip
         auto-save-buffers-enhanced
         import-popwin
+
         f
 
-        elpy
-        pyenv-mode
+        elpy pyenv-mode
 
         markdown-mode
 
-        emmet-mode
-        web-mode
+        emmet-mode web-mode
 
         origami
 
@@ -74,8 +70,7 @@
         (setq package-refreshed t))
       (package-install package))))
 
-
-(require 'use-package)
+(use-package use-package)
 
 (use-package init-loader
              :config

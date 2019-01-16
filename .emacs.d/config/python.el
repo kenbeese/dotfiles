@@ -44,8 +44,8 @@
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
   :config
   (pyenv-mode)
-  :bind
-  ("C-x p e" . pyenv-activate-current-project)
+  :bind (:map pyenv-mode-map
+        ("C-c p" . pyenv-activate-current-project))
   :hook
   (find-file . pyenv-mode-auto-hook)
   )

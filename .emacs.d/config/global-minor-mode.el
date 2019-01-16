@@ -115,3 +115,12 @@ properly disable mozc-mode."
          ad-do-it)))
    (ad-activate 'mozc-handle-event)
    )
+
+
+
+(use-package auto-yasnippet
+  :bind
+  (("C-x C-y" . aya-expand)
+   ("C-o" . aya-open-line)
+   )
+  )
