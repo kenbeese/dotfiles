@@ -39,7 +39,6 @@
         company
         solarized-theme
         helm
-        helm-dired-recent-dirs
         paredit
         auto-highlight-symbol
         migemo
@@ -48,10 +47,8 @@
         anzu
         auto-save-buffers-enhanced
         import-popwin
+        f
 
-        ;; auto-complete
-        ;; jedi
-        ;; ac-emmet
         elpy
         pyenv-mode
 
@@ -84,6 +81,8 @@
              :config
              (setq init-loader-byte-compile t)
              (init-loader-load (locate-user-emacs-file "init-loader")))
+
+(use-package f)
 
 ;; misc
 

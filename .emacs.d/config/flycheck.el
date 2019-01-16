@@ -1,6 +1,9 @@
-(global-flycheck-mode 1)
-
-(setq flycheck-display-errors-function nil)
+(use-package flycheck
+  :config
+  (setq flycheck-global-modes '(not python-mode)) ;elpy using flymake
+  (setq flycheck-display-errors-function nil)
+  (global-flycheck-mode t)
+)
 
 (defun flycheck-tip-current-line ()
   "Display error message in current line."

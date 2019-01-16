@@ -1,33 +1,29 @@
 ;; helm
 (helm-mode 1)
-(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x b") 'knbs-helm-buffer)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-d") 'helm-dired-recent-dirs-view)
 
 
-(defun helm-mini ()
-    "Preconfigured `helm' lightweight version \(buffer -> recentf\)."
-    (interactive)
-    (require 'helm-for-files)
-    (require 'helm-buffers)
-    (require 'helm-files)
-    (unless helm-source-buffers-list
-      (setq helm-source-buffers-list
-            (helm-make-source "Buffers" 'helm-source-buffers)))
-    (let* ((high-other-source '(helm-source-recentf
-                                helm-source-bookmarks
-                                helm-source-file-cache))
-           (low-other-source `(,(and (not (string-match "^/sshx:.*" default-directory))
-                                     'helm-source-files-in-current-dir)
-                               ;helm-source-filelist
-                               ;helm-source-locate
-                               helm-source-buffer-not-found))
-           (sources `(helm-source-buffers-list
-                      ,@high-other-source
-                      ,@low-other-source
-                      )))
-      (helm-other-buffer sources "*helm mini*")))
+(defun knbs-helm-buffer ()
+  (interactive)
+  (require 'helm-x-files)
+  (unless helm-source-buffers-list
+    (setq helm-source-buffers-list
+          (helm-make-source "Buffers" 'helm-source-buffers)))
+  (let ((knbs-source-list `(helm-source-buffers-list
+                            helm-source-recentf
+                            helm-source-bookmarks
+                            helm-source-file-cache
+                            ,(and (not (string-match "^/sshx:." default-directory))
+                                  'helm-source-files-in-current-dir)
+                            helm-source-locate)))
+
+    (helm :sources knbs-source-list
+          :ff-transformer-show-only-basename nil
+          :buffer "*knbs helm buffer*"
+          :truncate-lines helm-buffers-truncate-lines)
+    ))
 
 ;; action shortcut key
 (eval-after-load "helm"
