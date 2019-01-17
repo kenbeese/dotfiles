@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: if __name__ == "__main__":
+# key: ifmain
+# group:
+# --
+if __name__ == "__main__":
+    $0
