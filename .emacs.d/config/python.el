@@ -38,10 +38,11 @@
   )
 
 
+
 (use-package pyenv-mode
   :init
-  (add-to-list 'exec-path "~/.pyenv/shims")
-  (setenv "WORKON_HOME" "~/.pyenv/versions/")
+  (add-to-list 'exec-path (expand-file-name "shims" (getenv "PYENV_ROOT")))
+  (setenv "WORKON_HOME" (expand-file-name "versions/" (getenv "PYENV_ROOT")))
   :config
   (pyenv-mode)
   :bind (:map pyenv-mode-map
