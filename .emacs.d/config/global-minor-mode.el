@@ -90,6 +90,8 @@
 
 (when (locate-library "mozc")
   (require 'mozc)
+  (require 'mozc-popup)
+  (setq mozc-candidate-style 'popup)
   (set-language-environment "Japanese")
   (setq default-input-method "japanese-mozc")
 
