@@ -22,7 +22,7 @@
         ("TAB" . company-complete-common-or-cycle)
 )
   :config
-  (global-company-mode)
+  (global-company-mode 1)
   (setq company-transformers '(company-sort-by-backend-importance))
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2)
