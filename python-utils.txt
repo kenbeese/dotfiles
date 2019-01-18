@@ -1,9 +1,12 @@
 jupyter
 matplotlib
 pandas
+scipy
+sklearn
 autopep8
 flake8
-flake8-docstrings
+yapf
+#flake8-docstrings
 pep8-naming
 jupyter_contrib_nbextensions
 #jupyter-emacskeys

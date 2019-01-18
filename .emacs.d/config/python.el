@@ -28,7 +28,11 @@
               ("M-." . elpy-goto-definition)
               ("M-," . pop-tag-mark))
   :config
-  (setq elpy-rpc-backend "jedi"))
+  (setq elpy-rpc-backend "jedi")
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "-i --simple-prompt"
+        )
+  )
 
 (use-package python
   :mode ("\\.py" . python-mode)
@@ -45,6 +49,9 @@
   (setenv "WORKON_HOME" (expand-file-name "versions/" (getenv "PYENV_ROOT")))
   :config
   (pyenv-mode)
+  :bind (:map pyenv-mode-map
+              ("C-c C-s" . nil)
+              ("C-c C-u" . nil))
   :hook
   (find-file . pyenv-mode-auto-hook)
   )
