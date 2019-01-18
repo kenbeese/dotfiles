@@ -36,7 +36,8 @@
       '(
         use-package init-loader
         company auto-yasnippet
-        helm
+        helm helm-projectile helm-swoop
+        which-key
         solarized-theme
         paredit flex-autopair
         auto-highlight-symbol

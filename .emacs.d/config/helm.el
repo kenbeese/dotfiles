@@ -53,3 +53,36 @@
      ))
 ;; basenameを省略しない
 (setq helm-ff-transformer-show-only-basename nil)
+
+(use-package helm-projectile
+  :config
+  (projectile-mode 1)
+  (setq projectile-completion-system 'helm)
+  (setq helm-projectile-sources-list
+        '(helm-source-projectile-buffers-list
+          helm-source-projectile-recentf-list
+          helm-source-projectile-files-list
+          helm-source-projectile-projects))
+  (helm-projectile-on)
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . projectile-command-map))
+)
+
+
+(use-package helm-swoop
+  :bind
+  (("M-i" . helm-swoop)
+   ("M-I" . helm-swoop-back-to-last-point)
+   :map isearch-mode-map
+   ("M-i" . helm-swoop-from-isearch)
+   :map helm-swoop-map
+   ("C-s" . helm-next-line)
+   ("C-r" . helm-previous-line)
+   ("M-i" . helm-multi-swoop-all-from-helm-swoop)
+   ("M-m" . helm-multi-swoop-current-mode-from-helm-swoop)
+   :map helm-multi-swoop-map
+   ("C-s" . helm-next-line)
+   ("C-r" . helm-previous-line)
+   )
+)

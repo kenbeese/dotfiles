@@ -24,7 +24,7 @@
   :config
   (global-company-mode 1)
   (setq company-transformers '(company-sort-by-backend-importance))
-  (setq company-idle-delay 0)
+  (setq company-idle-delay 0.01)
   (setq company-minimum-prefix-length 2)
   (setq company-selection-wrap-around t)
 )
@@ -123,6 +123,25 @@ properly disable mozc-mode."
 (use-package auto-yasnippet
   :bind
   (("C-x C-y" . aya-expand)
-   ("C-o" . aya-open-line)
-   )
+   ("C-o" . aya-open-line))
   )
+
+(use-package helm-projectile
+  :config
+  (projectile-mode 1)
+  (setq projectile-completion-system 'helm)
+  (setq helm-projectile-sources-list
+        '(helm-source-projectile-buffers-list
+          helm-source-projectile-recentf-list
+          helm-source-projectile-files-list
+          helm-source-projectile-projects))
+  (helm-projectile-on)
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . projectile-command-map))
+  )
+
+(use-package which-key
+  :config
+  (which-key-mode 1)
+)
