@@ -126,20 +126,6 @@ properly disable mozc-mode."
    ("C-o" . aya-open-line))
   )
 
-(use-package helm-projectile
-  :config
-  (projectile-mode 1)
-  (setq projectile-completion-system 'helm)
-  (setq helm-projectile-sources-list
-        '(helm-source-projectile-buffers-list
-          helm-source-projectile-recentf-list
-          helm-source-projectile-files-list
-          helm-source-projectile-projects))
-  (helm-projectile-on)
-  :bind
-  (:map projectile-mode-map
-        ("C-c p" . projectile-command-map))
-  )
 
 (use-package which-key
   :config
