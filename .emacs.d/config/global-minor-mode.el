@@ -9,6 +9,27 @@
 (add-to-list 'ahs-modes 'js2-mode)
 
 
+;;; tab and C-g conflictionbetween company-mode and yasnippet
+;;; while snippet expanstion is in progress
+(defun knbs-yas-next-field (f &rest args)
+  (if company-candidates
+      (company-complete-common-or-cycle)
+    (apply f args)
+    ))
+(defun knbs-yas-abort (f &rest args)
+  (if company-candidates
+      (company-abort)
+    (apply f args)
+    ))
+
+(use-package yasnippet
+  :config
+  (yas-global-mode 1)
+  (advice-add 'yas-next-field-or-maybe-expand :around #'knbs-yas-next-field)
+  (advice-add 'yas-abort-snippet :around #'knbs-yas-abort)
+  )
+
+
 (use-package company
   :bind
   (:map company-active-map
@@ -130,7 +151,3 @@ properly disable mozc-mode."
 (use-package which-key
   :config
   (which-key-mode 1))
-
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
