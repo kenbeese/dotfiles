@@ -139,14 +139,23 @@ properly disable mozc-mode."
    (ad-activate 'mozc-handle-event)
    )
 
-
-
 (use-package auto-yasnippet
   :bind
   (("C-x C-y" . aya-expand)
    ("C-o" . aya-open-line))
   )
 
+(use-package ace-window
+  :bind
+  (("C-x o" . ace-window))
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?k ?l))
+  )
+
+(use-package avy
+  :bind
+  (("C-;" . avy-goto-char)
+   ("M-g w" . avy-goto-word-0)))
 
 (use-package which-key
   :config
