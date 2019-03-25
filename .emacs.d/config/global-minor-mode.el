@@ -32,7 +32,8 @@
 
 (use-package company
   :bind
-  (:map company-active-map
+  (("C-c y" . company-yasnippet)
+   :map company-active-map
         ("M-n" . nil)
         ("M-p" . nil)
         ("C-n" . 'company-select-next)
@@ -41,7 +42,7 @@
         ([tab] . company-complete-common-or-cycle)
         ("<tab>" . company-complete-common-or-cycle)
         ("TAB" . company-complete-common-or-cycle)
-)
+        )
   :config
   (global-company-mode 1)
   (setq company-transformers '(company-sort-by-backend-importance))

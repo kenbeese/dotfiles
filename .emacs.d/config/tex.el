@@ -6,9 +6,6 @@
 (setq TeX-source-correlate-method 'synctex)
 (setq TeX-source-correlate-start-server t)
 (setq TeX-view-program-list '(()))
-(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
-(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 ;; (add-hook 'LaTeX-mode-hook
 ;;           (function (lambda ()
 ;;                       (add-to-list 'TeX-command-list
@@ -20,7 +17,6 @@
 ;;
 ;; RefTeX with AUCTeX
 ;;
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 
 (setq TeX-view-program-list '(("PDFViewer" "SumatraPDF.exe %o"))) ; SumatraPDF
@@ -42,8 +38,32 @@
             (add-to-list 'TeX-command-list
                          '("fwdsumatrapdf" "SumatraPDF.exe -reuse-instance -forward-search %t %n"
                            TeX-run-discard-or-function t t :help "Forward search with SumatraPDF")) ; fwdsumatrapdf, synctex, option 注意!
+            (setq-local company-backends
+                        '(company-reftex-labels
+                          company-reftex-citations
+                          (company-auctex-macros
+                           company-auctex-symbols
+                           company-auctex-environments)
+                          company-dabbrev))
+            (TeX-source-correlate-mode 1)
+            (TeX-PDF-mode 1)
+            (LaTeX-math-mode 1)
+            (turn-on-reftex)
+            (orgtbl-mode 1)
+            (bind-keys :map LaTeX-mode-map
+                       ("C-c f" . fill-region))
             ))
 
+(use-package helm-bibtex
+  :config
+  (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
+  (helm-add-action-to-source "Insert citation" 'helm-bibtex-insert-citation helm-source-bibtex 0)
+  (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
+  (defun knbs-set-helm-bibtex ()
+      (bind-key "C-c [" 'helm-bibtex-with-local-bibliography reftex-mode-map)
+    )
+  :hook (reftex-mode . knbs-set-helm-bibtex)
+  )
 ;; sumatrapdf option
 ;; c:\cygwin\usr\local\share\emacs\bin\emacsclientw.exe +%l "%f"
 ;; for wsl
@@ -53,5 +73,5 @@
 ;;
 ;; (setq kinsoku-limit 10)
 
-(setenv "PATH" (concat "/usr/local/texlive/2016/bin/i386-cygwin/:" (getenv "PATH")))
-(setq exec-path (parse-colon-path (getenv "PATH")))
+;; (setenv "PATH" (concat "/usr/local/texlive/2016/bin/i386-cygwin/:" (getenv "PATH")))
+;; (setq exec-path (parse-colon-path (getenv "PATH")))

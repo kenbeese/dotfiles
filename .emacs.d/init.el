@@ -45,7 +45,7 @@
         flycheck flycheck-tip
         auto-save-buffers-enhanced
         import-popwin
-        ace-window-mode
+        ace-window
 
         f
 

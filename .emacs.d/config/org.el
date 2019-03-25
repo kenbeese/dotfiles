@@ -6,7 +6,8 @@
   )
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
-(setq org-todo-keywords '((sequence "TODO" "STARTED" "|" "DONE")))
+(setq org-enforce-todo-dependencies t)
+(setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "WAITING(w@)" "|" "DONE(d)")))
 (setq org-clock-in-switch-to-state "STARTED")
 (setq org-agenda-custom-commands
         '(
