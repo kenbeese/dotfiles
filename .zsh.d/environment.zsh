@@ -19,6 +19,7 @@ set_env() {
     ld_library_path=(${HOME}/nora/lib(N-/)
                      /usr/local/cuda/lib(N-/)
                      /usr/local/cuda/lib64(N-/)
+                     /usr/local/cuda/extras/CUPTI/lib64(N-/)
                      $ld_library_path)
     PKG_CONFIG_PATH=${HOME}/nora/lib/pkgconfig
     export GOPATH="${HOME}/workspaces/gocode"
