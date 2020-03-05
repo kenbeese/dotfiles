@@ -12,12 +12,12 @@
 ;;; tab and C-g conflictionbetween company-mode and yasnippet
 ;;; while snippet expanstion is in progress
 (defun knbs-yas-next-field (f &rest args)
-  (if company-candidates
+  (if (and (boundp 'company-candidates) company-candidates)
       (company-complete-common-or-cycle)
     (apply f args)
     ))
 (defun knbs-yas-abort (f &rest args)
-  (if company-candidates
+  (if (and (boundp 'company-candidates) company-candidates)
       (company-abort)
     (apply f args)
     ))
@@ -44,7 +44,7 @@
         ("TAB" . company-complete-common-or-cycle)
         )
   :config
-  (global-company-mode 1)
+  (global-company-mode t)
   (setq company-transformers '(company-sort-by-backend-importance))
   (setq company-idle-delay 0.01)
   (setq company-minimum-prefix-length 2)
@@ -127,18 +127,18 @@
                   (lambda () (interactive)
                     (inactivate-input-method)))
 
-   (defadvice mozc-handle-event (around intercept-keys (event))
-     "Intercept keys muhenkan and zenkaku-hankaku, before passing keys
+  (defadvice mozc-handle-event (around intercept-keys (event))
+    "Intercept keys muhenkan and zenkaku-hankaku, before passing keys
 to mozc-server (which the function mozc-handle-event does), to
 properly disable mozc-mode."
-     (if (member event (list 'zenkaku-hankaku 'muhenkan))
-         (progn
-           (mozc-clean-up-session)
-           (toggle-input-method))
-       (progn                            ;(message "%s" event) ;debug
-         ad-do-it)))
-   (ad-activate 'mozc-handle-event)
-   )
+    (if (member event (list 'zenkaku-hankaku 'muhenkan))
+        (progn
+          (mozc-clean-up-session)
+          (toggle-input-method))
+      (progn                            ;(message "%s" event) ;debug
+        ad-do-it)))
+  (ad-activate 'mozc-handle-event)
+  )
 
 (use-package auto-yasnippet
   :bind
