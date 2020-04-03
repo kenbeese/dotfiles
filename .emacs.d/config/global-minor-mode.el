@@ -114,6 +114,7 @@
   (require 'mozc)
   (require 'mozc-popup)
   (setq mozc-candidate-style 'popup)
+  ;; (setq mozc-candidate-style 'echo-area)
   (set-language-environment "Japanese")
   (setq default-input-method "japanese-mozc")
 

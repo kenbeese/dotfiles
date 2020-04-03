@@ -21,12 +21,24 @@
 
 (defun set-ricty-font ()
   (interactive)
+  (set-ricty-font12)
+  )
+
+(defun set-ricty-font12 ()
+  (interactive)
   (set-face-font 'default "Ricty-12")
   (set-face-font 'variable-pitch "Ricty-12")
   (set-face-font 'fixed-pitch "Ricty-12")
   (set-face-font 'tooltip "Ricty-10.5")
   )
 
+(defun set-ricty-font10.5 ()
+  (interactive)
+  (set-face-font 'default "Ricty-10.5")
+  (set-face-font 'variable-pitch "Ricty-10.5")
+  (set-face-font 'fixed-pitch "Ricty-10.5")
+  (set-face-font 'tooltip "Ricty-9")
+  )
 
 
 (defun my-replace-strings-in-region-by-list ($list)
