@@ -1,3 +1,4 @@
 .chpwd-recent-dirs*
 localenv.zsh
 .zcompdump*
+.p10k.zsh
