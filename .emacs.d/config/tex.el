@@ -1,3 +1,4 @@
+;;; pleasee install aux-tex
 (setq TeX-default-mode 'japanese-latex-mode)
 (setq japanese-LaTeX-default-style "jsarticle")
 (setq japanese-LaTeX-command-default "latexmk")
@@ -54,16 +55,16 @@
                        ("C-c f" . fill-region))
             ))
 
-(use-package helm-bibtex
-  :config
-  (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
-  (helm-add-action-to-source "Insert citation" 'helm-bibtex-insert-citation helm-source-bibtex 0)
-  (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
-  (defun knbs-set-helm-bibtex ()
-      (bind-key "C-c [" 'helm-bibtex-with-local-bibliography reftex-mode-map)
-    )
-  :hook (reftex-mode . knbs-set-helm-bibtex)
-  )
+;; (use-package helm-bibtex
+;;   :config
+;;   (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
+;;   (helm-add-action-to-source "Insert citation" 'helm-bibtex-insert-citation helm-source-bibtex 0)
+;;   (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
+;;   (defun knbs-set-helm-bibtex ()
+;;       (bind-key "C-c [" 'helm-bibtex-with-local-bibliography reftex-mode-map)
+;;     )
+;;   :hook (reftex-mode . knbs-set-helm-bibtex)
+;;   )
 ;; sumatrapdf option
 ;; c:\cygwin\usr\local\share\emacs\bin\emacsclientw.exe +%l "%f"
 ;; for wsl

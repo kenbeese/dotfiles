@@ -80,6 +80,7 @@
 
 ;;; white spaceの削除
 (defvar my-disable-delete-trailing-modes '(org-mode markdown-mode))
+(add-to-list 'my-disable-delete-trailing-modes 'latex-mode)
 
 (defun my-delete-trailing-whitespace ()
   (when (not (memq major-mode my-disable-delete-trailing-modes))

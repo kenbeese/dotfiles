@@ -71,7 +71,7 @@
   (setq migemo-options '("-q" "--emacs"))
 
   (defvar migemo-dictionary nil)
-  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  (setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
 
   (defvar migemo-user-dictionary nil)
 
@@ -79,7 +79,6 @@
 
   (defvar migemo-coding-system nil)
   (setq migemo-coding-system 'utf-8-unix)
-
   (load-library "migemo"))
 
 
@@ -113,8 +112,9 @@
 (when (locate-library "mozc")
   (require 'mozc)
   (require 'mozc-popup)
+  (setq mozc-candidate-style 'echo-area)
   (setq mozc-candidate-style 'popup)
-  ;; (setq mozc-candidate-style 'echo-area)
+  ;; (setq mozc-candidate-style 'overlay)
   (set-language-environment "Japanese")
   (setq default-input-method "japanese-mozc")
 

@@ -191,7 +191,6 @@
   (set-face-font 'fixed-pitch "Ricty-12")
   (set-face-font 'tooltip "Ricty-10.5")
   )
-
 (when (eq system-type 'darwin)
   (setq ns-command-modifier (quote meta))
   (setq ns-alternate-modifier (quote super)))
