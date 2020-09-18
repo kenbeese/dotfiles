@@ -26,6 +26,31 @@ set_alias(){
     alias -g W='| wc'
 }
 
+set_git_alias(){
+    alias gst='git status -s'
+    compdef _git gst=git-status
+    alias gco='git checkout'
+    compdef _git gco=git-checkout
+    alias gci='git commit -v'
+    compdef _git gci=git-commit
+    alias gba='git branch -a'
+    compdef _git gba=git-branch
+    alias gll="git log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'"
+    compdef _git glgr=git-log
+    alias gl="git log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s' --all"
+    compdef _git glgra=git-log
+    alias glg="git log"
+    compdef _git glg=git-log
+    alias ga='git add'
+    compdef _git ga=git-add
+    alias gdf='git diff'
+    compdef _git gdf=git-diff
+    alias gdw='git diff --word-diff'
+    compdef _git gdw=git-diff
+    alias gsu='(cd $(git rev-parse --show-toplevel) && git submodule update)'
+    alias gsui='(cd $(git rev-parse --show-toplevel) && git submodule update --init)'
+}
+
 set_darwin_alias(){
     alias javac="javac -J-Dfile.encoding=UTF8"
     alias java="java -Dfile.encoding=UTF8"
@@ -69,6 +94,7 @@ set_os_alias() {
 
 # For default alias
 set_alias
+set_git_alias
 
 # For OS depending alias
 set_os_alias
