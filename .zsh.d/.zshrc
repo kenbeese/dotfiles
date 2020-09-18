@@ -1,3 +1,6 @@
+[[ $- == *i* ]] && stty -ixon               # インタラクティブシェルじゃない時用？
+# stty -ixon               # Ctrl-sのキーバインド解消
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zsh.d/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -77,8 +80,6 @@ zinit light zsh-users/zaw
 bindkey '^R' zaw-history
 zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitiveに
 zstyle ':filter-select' extended-search yes # see below
-# [[ $- == *i* ]] && stty -ixon               # インタラクティブシェルじゃない時用？
-stty -ixon               # Ctrl-sのキーバインド解消
 bindkey '^S' zaw-cdr # zaw-cdrをbindkey
 bindkey '^X^S' zaw-git-status
 bindkey '^U' zaw-git-branches
@@ -93,21 +94,16 @@ function zaw-callback-tmux-attach() {
 
 
 # 単語区切りの指定" /:@+|"を単語の区切りとする
-autoload -Uz select-word-style
-select-word-style default
-zstyle ':zle:*' word-chars " /:@+|"
-zstyle ':zle:*' word-style unspecified
+WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+# 上記だけでよくなった？
+# autoload -Uz select-word-style
+# select-word-style normal
+# zstyle ':zle:*' word-chars ":@+|"
+# zstyle ':zle:*' word-style unspecified
 
 
-
-# prompt
-# hakugen nerdfontをいれるといい感じ
-# After finishing the configuration wizard change the atload'' ice to:
-# -> atload'source ~/.p10k.zsh; _p9k_precmd'
-# zinit ice wait'!' lucid atload'true; _p9k_precmd' nocd
-zinit ice wait'!' lucid atload'source ~/.zsh.d/.p10k.zsh; _p9k_precmd' nocd
-zinit light romkatv/powerlevel10k
-
+zinit ice depth=1;zinit light romkatv/powerlevel10k
+[[ -f ~/.zsh.d/.p10k.zsh ]] && source ~/.zsh.d/.p10k.zsh
 
 #########################
 # Completion setting
