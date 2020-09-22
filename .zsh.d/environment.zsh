@@ -75,7 +75,7 @@ set_wsl_env() {
         command_path="/mnt/c/Program Files/VcXsrv/vcxsrv.exe"
         command_name=$(basename "$command_path")
         if ! tasklist.exe 2> /dev/null | grep -q "$command_name"; then
-            "$command_path" :0 -multiwindow -wgl &
+            "$command_path" :0 -multiwindow -clipboard -noprimary -wgl &
         fi
         export DISPLAY="localhost:0.0"
     fi

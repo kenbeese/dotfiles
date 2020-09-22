@@ -150,10 +150,10 @@ fi
 [ -f ~/.zsh.d/history.zsh ] && source ~/.zsh.d/history.zsh
 [ -f ~/.zsh.d/etc.zsh ] && source ~/.zsh.d/etc.zsh
 
-# if [ "$TERM" = "screen-256color" -o "$TERM" = "screen" ]; then
-#     if which pyenv > /dev/null; then
-#         eval "$(pyenv init -)"
-#         eval "$(pyenv virtualenv-init -)"
-#     fi
-# fi
+if [ "$TERM" = "screen-256color" -o "$TERM" = "screen" ]; then
+    if which pyenv > /dev/null; then
+        eval "$(pyenv init -)"
+	[ -d $(pyenv root)/plugins/pyenv-virtualenv ] && eval "$(pyenv virtualenv-init -)"
+    fi
+fi
 #zprof
