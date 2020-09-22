@@ -85,7 +85,7 @@ bindkey '^X^S' zaw-git-status
 bindkey '^U' zaw-git-branches
 bindkey '^T' zaw-tmux
 bindkey -M filterselect '^E' accept-search
-zstyle ':filter-select:highlight' selected bg=cyan,standout
+# zstyle ':filter-select:highlight' selected bg=cyan,standout
 # tmuxのアクションのカスタマイズ
 function zaw-callback-tmux-attach() {
     BUFFER="tmux attach -d -t ${(q)1}"
@@ -151,7 +151,7 @@ fi
 [ -f ~/.zsh.d/etc.zsh ] && source ~/.zsh.d/etc.zsh
 
 if [ "$TERM" = "screen-256color" -o "$TERM" = "screen" ]; then
-    if which pyenv > /dev/null; then
+    if which pyenv > /dev/null 2>&1; then
         eval "$(pyenv init -)"
 	[ -d $(pyenv root)/plugins/pyenv-virtualenv ] && eval "$(pyenv virtualenv-init -)"
     fi

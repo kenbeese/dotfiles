@@ -32,7 +32,7 @@
   (set-face-font 'tooltip "Ricty-10.5")
   )
 
-(defun set-ricty-font10.5 ()
+(defun set-ricty-font10 ()
   (interactive)
   (set-face-font 'default "Ricty-10.5")
   (set-face-font 'variable-pitch "Ricty-10.5")
