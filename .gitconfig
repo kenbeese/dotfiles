@@ -1,5 +1,4 @@
 [color]
 	ui = true
 [user]
-	email = kentaro0910+git@gmail.com
-	name = TAKAGI Kentaro
+        useConfigOnly = true
