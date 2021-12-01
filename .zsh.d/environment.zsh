@@ -3,6 +3,7 @@ set_env() {
     export GIT_EDITOR="emacsclient -nw"
     export VISUAL="emacsclient -nw"
     export LANG=ja_JP.UTF-8
+    export HOSTNAME=$HOST
 
     fpath=(~/.localzshcomp(N-/) ~/.zsh.d/my-completions(N-/) $fpath)
 
@@ -33,6 +34,7 @@ set_env() {
     if [ -d "${HOME}/.pyenv" ]; then
         export PYENV_ROOT="${HOME}/.pyenv"
         path=(${PYENV_ROOT}/bin(N-/) $path)
+        eval "$(pyenv init --path)"
     fi
 
     ld_library_path=(${HOME}/.cudnn/active/cuda/lib64(N-/) $ld_library_path)

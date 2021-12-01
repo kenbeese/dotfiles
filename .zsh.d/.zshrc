@@ -146,7 +146,7 @@ fi
 
 if [ "$TERM" = "screen-256color" -o "$TERM" = "screen" -o "$TERM" = "xterm-256color" ]; then
     if which pyenv > /dev/null 2>&1; then
-        eval "$(pyenv init --path)"
+        eval "$(pyenv init -)"
 	[ -d $(pyenv root)/plugins/pyenv-virtualenv ] && eval "$(pyenv virtualenv-init -)"
     fi
 fi
