@@ -142,6 +142,7 @@ fi
 [ -f ~/.zsh.d/alias.zsh ] && source ~/.zsh.d/alias.zsh
 [ -f ~/.zsh.d/history.zsh ] && source ~/.zsh.d/history.zsh
 [ -f ~/.zsh.d/etc.zsh ] && source ~/.zsh.d/etc.zsh
+[ -f ~/.zsh.d/local.zsh ] && source ~/.zsh.d/local.zsh
 
 if [ "$TERM" = "screen-256color" -o "$TERM" = "screen" -o "$TERM" = "xterm-256color" ]; then
     if which pyenv > /dev/null 2>&1; then
