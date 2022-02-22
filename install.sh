@@ -9,7 +9,7 @@ link () {
     ln -sf "$from" "$to"
 }
 
-HOGE=(".tmux.conf" ".zshenv" ".zsh.d" ".emacs.d" ".gitconfig" ".aspell.conf" ".latexmkrc")
+HOGE=(".tmux.conf" ".zsh.d/.zshenv" ".zsh.d" ".emacs.d" ".gitconfig" ".aspell.conf" ".latexmkrc")
 for ofile in ${HOGE[@]}; do
     link ${CURRENTDIR}/${ofile} ${HOME}/
 done
