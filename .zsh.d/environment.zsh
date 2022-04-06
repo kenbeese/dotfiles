@@ -1,7 +1,4 @@
 set_env() {
-    export EDITOR="emacsclient -nw"
-    export GIT_EDITOR="emacsclient -nw"
-    export VISUAL="emacsclient -nw"
     export LANG=ja_JP.UTF-8
     export HOSTNAME=$HOST
 
@@ -44,9 +41,6 @@ set_env() {
 }
 
 set_darwin_env() {
-    export GIT_EDITOR="/usr/local/bin/emacsclient -nw"
-    export EDITOR="/usr/local/bin/emacsclient -nw"
-    export VISUAL="/usr/local/bin/emacsclient -nw"
     path=(/usr/local/sbin
           /usr/local/bin
           $path
@@ -59,9 +53,6 @@ set_darwin_env() {
 
 set_cygwin_env() {
     export LANG=C
-    export EDITOR="emacsclient --socket-name=~/.emacs.d/server -nw"
-    export GIT_EDITOR="emacsclient --socket-name=~/.emacs.d/server -nw"
-    export VISUAL="emacsclient --socket-name=~/.emacs.d/server -nw"
     export TMUX_TMPDIR="/var/tmp"
     export LANG=C
     [ -f ~/.minttyrc.solarized.dark ] && source ~/.minttyrc.solarized.dark
