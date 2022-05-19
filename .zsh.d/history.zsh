@@ -14,7 +14,7 @@ setopt append_history        # 履歴を追加 (毎回 .zsh_history を作るの
 setopt hist_no_store         # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks    # 余分な空白は詰めて記録
 setopt hist_ignore_space     # 先頭がスペースの場合、ヒストリに追加しない
-setopt hist_fcntl_lock       # fcntlのロックを使う
+#setopt hist_fcntl_lock       # fcntlのロックを使う
 
 # auto directory pushd that you can get dirs list by cd -[tab]
 setopt auto_pushd
