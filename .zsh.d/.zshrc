@@ -27,6 +27,9 @@ autoload -Uz _zinit
 # plugin settings
 zinit ice blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
+zinit wait lucid is-snippet as"completion" for \
+    OMZP::docker/_docker \
+    OMZP::docker-compose/_docker-compose
 
 autoload compinit
 compinit
