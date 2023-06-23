@@ -25,19 +25,21 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 #zmodload zsh/zprof
 # plugin settings
-zinit ice blockf atpull'zinit creinstall -q .'
+zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
-[[ ! -d $ZSH_CACHE__DIR ]] && command mkdir -p "${ZSH_CACHE_DIR}/completions"
-zi snippet OMZP::docker
-zinit ice as"completion"
-zi snippet OMZP::docker-compose/_docker-compose
+
+[[ ! -d $ZSH_CACHE_DIR ]] && command mkdir -p "${ZSH_CACHE_DIR}/completions"
+zinit ice wait lucid
+zinit snippet OMZP::docker
+zinit ice wait lucid as"completion"
+zinit snippet OMZP::docker-compose/_docker-compose
 
 autoload compinit
 compinit
 
-zinit light zdharma-continuum/fast-syntax-highlighting
-
-zinit light zsh-users/zsh-autosuggestions
+zinit wait lucid for light-mode \
+	zdharma-continuum/fast-syntax-highlighting \
+	zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=242"
 
 # lsのカラー設定
