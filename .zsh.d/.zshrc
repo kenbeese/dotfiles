@@ -28,7 +28,7 @@ autoload -Uz _zinit
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
-[[ ! -d $ZSH_CACHE_DIR ]] && command mkdir -p "${ZSH_CACHE_DIR}/completions"
+[[ ! -d ${ZSH_CACHE_DIR}/completions ]] && command mkdir -p "${ZSH_CACHE_DIR}/completions"
 zinit ice wait lucid
 zinit snippet OMZP::docker
 zinit ice wait lucid as"completion"
